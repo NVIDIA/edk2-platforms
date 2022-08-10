@@ -1,7 +1,7 @@
 ## @file
 #  ACPI table data and ASL sources required to boot the platform.
 #
-#  Copyright (c) 2020 - 2024, Arm Ltd. All rights reserved.
+#  Copyright (c) 2024, Arm Ltd. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -9,7 +9,7 @@
 
 [Defines]
   INF_VERSION                    = 0x0001001A
-  BASE_NAME                      = RdN2AcpiTables
+  BASE_NAME                      = RdN2Cfg3AcpiTables
   FILE_GUID                      = c712719a-0aaf-438c-9cdd-35ab4d60207d  # gArmSgiAcpiTablesGuid
   MODULE_TYPE                    = USER_DEFINED
   VERSION_STRING                 = 1.0
@@ -18,13 +18,10 @@
   Dbg2.aslc
   Fadt.aslc
   Gtdt.aslc
-  Iort.aslc
-  Mcfg.aslc
   RdN2/Dsdt.asl
   RdN2/Madt.aslc
   RdN2/Pptt.aslc
   Spcr.aslc
-  Ssdt.asl
   SsdtEvents.asl
   SsdtIoVirtSocExp.asl
   SsdtRos.asl
@@ -56,7 +53,6 @@
   gArmTokenSpaceGuid.PcdPciBusMin
   gArmTokenSpaceGuid.PcdPciBusMax
 
-  gArmSgiTokenSpaceGuid.PcdChipCount
   gArmSgiTokenSpaceGuid.PcdGpioController0BaseAddress
   gArmSgiTokenSpaceGuid.PcdGpioController0Size
   gArmSgiTokenSpaceGuid.PcdGpioController0Interrupt

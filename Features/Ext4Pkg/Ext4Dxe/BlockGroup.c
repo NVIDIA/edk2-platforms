@@ -169,20 +169,19 @@ Ext4CalculateBlockGroupDescChecksumGdtCsum (
   )
 {
   UINT16  Csum;
-  UINT16  Dummy;
 
-  Dummy = 0;
+  Csum = ~0;
 
-  Csum = CalculateCrc16Ansi (Partition->SuperBlock.s_uuid, 16, 0);
+  Csum = CalculateCrc16Ansi (Partition->SuperBlock.s_uuid, 16, Csum);
   Csum = CalculateCrc16Ansi (&BlockGroupNum, sizeof (BlockGroupNum), Csum);
   Csum = CalculateCrc16Ansi (BlockGroupDesc, OFFSET_OF (EXT4_BLOCK_GROUP_DESC, bg_checksum), Csum);
-  Csum = CalculateCrc16Ansi (&Dummy, sizeof (Dummy), Csum);
   Csum =
     CalculateCrc16Ansi (
       &BlockGroupDesc->bg_block_bitmap_hi,
       Partition->DescSize - OFFSET_OF (EXT4_BLOCK_GROUP_DESC, bg_block_bitmap_hi),
       Csum
       );
+
   return Csum;
 }
 

@@ -80,8 +80,14 @@ FvNameGuid         = 87940482-fc81-41c3-87e6-399cf85ac8a0
 !if $(SECURE_BOOT_ENABLE) == TRUE
   INF SecurityPkg/VariableAuthenticated/SecureBootConfigDxe/SecureBootConfigDxe.inf
 !endif
+
+!if $(ENABLE_UEFI_SECURE_VARIABLE) == TRUE
+  INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableSmmRuntimeDxe.inf
+!else
   INF MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf
   INF MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteDxe.inf
+!endif
+
   INF MdeModulePkg/Universal/MonotonicCounterRuntimeDxe/MonotonicCounterRuntimeDxe.inf
   INF MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
   INF EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
@@ -168,6 +174,9 @@ FvNameGuid         = 87940482-fc81-41c3-87e6-399cf85ac8a0
   INF MdeModulePkg/Universal/BdsDxe/BdsDxe.inf
   INF MdeModulePkg/Application/UiApp/UiApp.inf
 
+!if $(ENABLE_STMM) == TRUE
+  INF ArmPkg/Drivers/MmCommunicationDxe/MmCommunication.inf
+!endif
 
   #
   # PCI Support

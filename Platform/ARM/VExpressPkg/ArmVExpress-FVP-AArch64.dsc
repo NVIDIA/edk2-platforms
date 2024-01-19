@@ -25,6 +25,15 @@
   SKUID_IDENTIFIER               = DEFAULT
   FLASH_DEFINITION               = Platform/ARM/VExpressPkg/ArmVExpress-FVP-AArch64.fdf
 
+  # To allow the use of ueif secure variable feature, set this to TRUE.
+  DEFINE ENABLE_UEFI_SECURE_VARIABLE = FALSE
+
+!if $(ENABLE_UEFI_SECURE_VARIABLE) == TRUE
+  DEFINE ENABLE_STMM             = TRUE
+!else
+  DEFINE ENABLE_STMM             = FALSE
+!endif
+
 !ifndef ARM_FVP_RUN_NORFLASH
   DEFINE EDK2_SKIP_PEICORE=1
 !endif
@@ -53,6 +62,10 @@
   FileExplorerLib|MdeModulePkg/Library/FileExplorerLib/FileExplorerLib.inf
 !endif
 
+!if $(ENABLE_STMM) == TRUE
+  MmUnblockMemoryLib|MdePkg/Library/MmUnblockMemoryLib/MmUnblockMemoryLibNull.inf
+!endif
+
   DtPlatformDtbLoaderLib|Platform/ARM/VExpressPkg/Library/ArmVExpressDtPlatformDtbLoaderLib/ArmVExpressDtPlatformDtbLoaderLib.inf
 
 [LibraryClasses.common.DXE_RUNTIME_DRIVER]
@@ -71,7 +84,9 @@
 
 [BuildOptions]
   GCC:*_*_AARCH64_PLATFORM_FLAGS == -I$(WORKSPACE)/Platform/ARM/VExpressPkg/Include/Platform/RTSM
-
+!if $(ENABLE_UEFI_SECURE_VARIABLE) == TRUE
+  GCC:*_*_*_CC_FLAGS = -DENABLE_UEFI_SECURE_VARIABLE
+!endif
 
 ################################################################################
 #
@@ -85,6 +100,11 @@
   #  It could be set FALSE to save size.
   gEfiMdeModulePkgTokenSpaceGuid.PcdConOutGopSupport|TRUE
 
+!if $(ENABLE_UEFI_SECURE_VARIABLE) == TRUE
+  ## Disable Runtime Variable Cache.
+  gEfiMdeModulePkgTokenSpaceGuid.PcdEnableVariableRuntimeCache|FALSE
+!endif
+
 [PcdsFixedAtBuild.common]
   # Only one core enters UEFI, and PSCI is implemented in EL3 by ATF
   gArmPlatformTokenSpaceGuid.PcdCoreCount|1
@@ -92,12 +112,26 @@
   #
   # NV Storage PCDs. Use base of 0x0C000000 for NOR1
   #
+!if $(ENABLE_UEFI_SECURE_VARIABLE) == FALSE
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase|0x0FFC0000
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize|0x00010000
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase|0x0FFD0000
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize|0x00010000
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase|0x0FFE0000
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize|0x00010000
+!endif
+
+  #
+  # Set the base address and size of the buffer used
+  # by MM_COMMUNICATE for communication between the
+  # Normal world edk2 and the StandaloneMm image at S-EL0.
+  # This buffer is allocated in TF-A.
+  #
+!if $(ENABLE_STMM) == TRUE
+  ## MM Communicate
+  gArmTokenSpaceGuid.PcdMmBufferBase|0xFF600000
+  gArmTokenSpaceGuid.PcdMmBufferSize|0x10000
+!endif
 
   gArmTokenSpaceGuid.PcdVFPEnabled|1
 
@@ -252,6 +286,10 @@
   MdeModulePkg/Universal/SecurityStubDxe/SecurityStubDxe.inf
 !endif
   MdeModulePkg/Universal/CapsuleRuntimeDxe/CapsuleRuntimeDxe.inf
+
+!if $(ENABLE_UEFI_SECURE_VARIABLE) == TRUE
+  MdeModulePkg/Universal/Variable/RuntimeDxe/VariableSmmRuntimeDxe.inf
+!else
   MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
     <LibraryClasses>
       NULL|EmbeddedPkg/Library/NvVarStoreFormattedLib/NvVarStoreFormattedLib.inf
@@ -259,6 +297,8 @@
       BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
   }
   MdeModulePkg/Universal/FaultTolerantWriteDxe/FaultTolerantWriteDxe.inf
+!endif
+
   MdeModulePkg/Universal/MonotonicCounterRuntimeDxe/MonotonicCounterRuntimeDxe.inf
   MdeModulePkg/Universal/ResetSystemRuntimeDxe/ResetSystemRuntimeDxe.inf
   EmbeddedPkg/RealTimeClockRuntimeDxe/RealTimeClockRuntimeDxe.inf
@@ -368,3 +408,10 @@
   # SATA Controller
   #
   MdeModulePkg/Bus/Pci/SataControllerDxe/SataControllerDxe.inf
+
+!if $(ENABLE_STMM) == TRUE
+  ArmPkg/Drivers/MmCommunicationDxe/MmCommunication.inf {
+    <LibraryClasses>
+      NULL|StandaloneMmPkg/Library/VariableMmDependency/VariableMmDependency.inf
+  }
+!endif

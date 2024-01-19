@@ -1,6 +1,6 @@
 /** @file
 
- Copyright (c) 2011-2014, ARM Ltd. All rights reserved.<BR>
+ Copyright (c) 2011-2024, ARM Ltd. All rights reserved.<BR>
 
  SPDX-License-Identifier: BSD-2-Clause-Patent
 
@@ -12,34 +12,8 @@
 #include <Library/NorFlashPlatformLib.h>
 #include <ArmPlatform.h>
 
-#define NOR_FLASH_DEVICE_COUNT                     4
-
-NOR_FLASH_DESCRIPTION mNorFlashDevices[NOR_FLASH_DEVICE_COUNT] = {
-  { // BootMon
-    ARM_VE_SMB_NOR0_BASE,
-    ARM_VE_SMB_NOR0_BASE,
-    SIZE_256KB * 255,
-    SIZE_256KB,
-  },
-  { // BootMon non-volatile storage
-    ARM_VE_SMB_NOR0_BASE,
-    ARM_VE_SMB_NOR0_BASE + SIZE_256KB * 255,
-    SIZE_64KB * 4,
-    SIZE_64KB,
-  },
-  { // UEFI
-    ARM_VE_SMB_NOR1_BASE,
-    ARM_VE_SMB_NOR1_BASE,
-    SIZE_256KB * 255,
-    SIZE_256KB,
-  },
-  { // UEFI Variable Services non-volatile storage
-    ARM_VE_SMB_NOR1_BASE,
-    ARM_VE_SMB_NOR1_BASE + SIZE_256KB * 255,
-    SIZE_64KB * 3, //FIXME: Set 3 blocks because I did not succeed to copy 4 blocks into the ARM Versatile Express NOR Flash in the last NOR Flash. It should be 4 blocks
-    SIZE_64KB,
-  }
-};
+extern NOR_FLASH_DESCRIPTION mNorFlashDevices[];
+extern UINT32                mNorFlashCount;
 
 EFI_STATUS
 NorFlashPlatformInitialization (
@@ -68,7 +42,7 @@ NorFlashPlatformGetDevices (
   }
 
   *NorFlashDevices = mNorFlashDevices;
-  *Count = NOR_FLASH_DEVICE_COUNT;
+  *Count = mNorFlashCount;
 
   return EFI_SUCCESS;
 }

@@ -256,7 +256,7 @@
 !endif
   VariablePolicyLib|MdeModulePkg/Library/VariablePolicyLib/VariablePolicyLibRuntimeDxe.inf
 
-[LibraryClasses.ARM, LibraryClasses.AARCH64]
+[LibraryClasses.AARCH64]
   #
   # It is not possible to prevent the ARM compiler for generic intrinsic functions.
   # This library provides the instrinsic functions generate by a given compiler.
@@ -480,8 +480,3 @@
 !if $(INCLUDE_TFTP_COMMAND) == TRUE
   ShellPkg/DynamicCommand/TftpDynamicCommand/TftpDynamicCommand.inf
 !endif
-
-[Components.ARM]
-
-  # ISP1761 USB OTG Controller
-  Platform/ARM/VExpressPkg/Drivers/Isp1761UsbDxe/Isp1761UsbDxe.inf

@@ -32,9 +32,6 @@
   RTSM.c
   RTSMMem.c
 
-[Sources.ARM]
-  Arm/RTSMHelper.S
-
 [Sources.AARCH64]
   AArch64/RTSMHelper.S
 

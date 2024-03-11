@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2018 - 2022, ARM Limited. All rights reserved.
+#  Copyright (c) 2018 - 2024, Arm Limited. All rights reserved.
 #  (C) Copyright 2021 Hewlett Packard Enterprise Development LP<BR>
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -130,10 +130,6 @@
   gArmPlatformTokenSpaceGuid.PcdCPUCoresStackBase|0x80000000
   gArmPlatformTokenSpaceGuid.PcdCPUCorePrimaryStackSize|0x40000
   gArmPlatformTokenSpaceGuid.PcdCPUCoreSecondaryStackSize|0x0
-
-  # System Memory (1GB - 16MB of Trusted DRAM at the top of the 32bit address space)
-  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
-  gArmTokenSpaceGuid.PcdSystemMemorySize|0x7F000000
 
   # ACPI Table Version
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20

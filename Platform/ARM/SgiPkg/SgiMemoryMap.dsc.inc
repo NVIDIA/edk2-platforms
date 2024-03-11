@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2020 - 2022, Arm Limited. All rights reserved.
+#  Copyright (c) 2020 - 2024, Arm Limited. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -67,3 +67,9 @@
   gArmSgiTokenSpaceGuid.PcdGpioController0BaseAddress|0x1C1D0000
   gArmSgiTokenSpaceGuid.PcdGpioController0Size|0x00010000
   gArmSgiTokenSpaceGuid.PcdGpioController0Interrupt|136
+
+  # System Memory (1GB - 16MB of Trusted DRAM at the top of the
+  # 32bit address space)
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x7F000000
+

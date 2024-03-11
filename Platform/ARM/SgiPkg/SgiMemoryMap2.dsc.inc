@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2020 - 2023, Arm Limited. All rights reserved.
+#  Copyright (c) 2020 - 2024, Arm Limited. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -75,3 +75,9 @@
 
   # IO virtualization block
   gArmSgiTokenSpaceGuid.PcdIoVirtSocExpBlk0Base|0x1080000000
+
+  # System Memory (1GB - 16MB of Trusted DRAM at the top of the
+  # 32bit address space)
+  gArmTokenSpaceGuid.PcdSystemMemoryBase|0x80000000
+  gArmTokenSpaceGuid.PcdSystemMemorySize|0x7F000000
+

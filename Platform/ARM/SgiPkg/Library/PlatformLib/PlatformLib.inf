@@ -1,5 +1,5 @@
 #
-#  Copyright (c) 2018 - 2023, Arm Limited. All rights reserved.
+#  Copyright (c) 2018 - 2024, Arm Limited. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -35,6 +35,9 @@
 
 [Sources.AARCH64]
   AArch64/Helper.S | GCC
+
+[FeaturePcd]
+  gArmSgiTokenSpaceGuid.PcdPcieEnable
 
 [FixedPcd]
   gArmPlatformTokenSpaceGuid.PcdClusterCount

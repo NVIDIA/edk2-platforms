@@ -31,6 +31,7 @@
 [PcdsFeatureFlag.common]
   gArmSgiTokenSpaceGuid.PcdVirtioBlkSupported|FALSE|BOOLEAN|0x00000001
   gArmSgiTokenSpaceGuid.PcdVirtioNetSupported|FALSE|BOOLEAN|0x00000010
+  gArmSgiTokenSpaceGuid.PcdPcieEnable|FALSE|BOOLEAN|0x0000002E
 
 [PcdsFixedAtBuild]
   gArmSgiTokenSpaceGuid.PcdDramBlock2Base|0|UINT64|0x00000002

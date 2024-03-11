@@ -18,7 +18,8 @@
 
 // Total number of descriptors, including the final "end-of-table" descriptor.
 #define MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS                                     \
-          ((14 + (FixedPcdGet32 (PcdChipCount) * 2)) +                         \
+          ((13 + (FixedPcdGet32 (PcdChipCount) * 2)) +                         \
+           ((FeaturePcdGet (PcdPcieEnable) == TRUE) ? 1 : 0) +                 \
            (FixedPcdGet32 (PcdIoVirtSocExpBlkUartEnable) *                     \
             FixedPcdGet32 (PcdChipCount) * 2))
 
@@ -263,13 +264,15 @@ ArmPlatformGetVirtualMemoryMap (
 #endif
 #endif
 
-  // PCI Configuration Space
-  VirtualMemoryTable[++Index].PhysicalBase  = PcdGet64 (PcdPciExpressBaseAddress);
-  VirtualMemoryTable[Index].VirtualBase     = PcdGet64 (PcdPciExpressBaseAddress);
-  VirtualMemoryTable[Index].Length          = (FixedPcdGet32 (PcdPciBusMax) -
-                                               FixedPcdGet32 (PcdPciBusMin) + 1) *
-                                               SIZE_1MB;
-  VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
+  if (FeaturePcdGet (PcdPcieEnable)) {
+    // PCI Configuration Space
+    VirtualMemoryTable[++Index].PhysicalBase  = PcdGet64 (PcdPciExpressBaseAddress);
+    VirtualMemoryTable[Index].VirtualBase     = PcdGet64 (PcdPciExpressBaseAddress);
+    VirtualMemoryTable[Index].Length          = (FixedPcdGet32 (PcdPciBusMax) -
+                                                 FixedPcdGet32 (PcdPciBusMin) + 1) *
+                                                 SIZE_1MB;
+    VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
+  }
 
  // MM Memory Space
   VirtualMemoryTable[++Index].PhysicalBase  = PcdGet64 (PcdMmBufferBase);

@@ -103,6 +103,10 @@
   gArmSgiTokenSpaceGuid.PcdVirtioNetSupported|TRUE
   gEfiMdeModulePkgTokenSpaceGuid.PcdEnableVariableRuntimeCache|FALSE
 
+!if $(PCIE_ENABLE) == TRUE
+  gArmSgiTokenSpaceGuid.PcdPcieEnable|TRUE
+!endif
+
 [PcdsFixedAtBuild.common]
   gArmTokenSpaceGuid.PcdVFPEnabled|1
   gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
@@ -330,6 +334,7 @@
   # Virtio Network
   OvmfPkg/VirtioNetDxe/VirtioNet.inf
 
+!if $(PCIE_ENABLE) == TRUE
   #
   # Required by PCI
   #
@@ -343,6 +348,7 @@
     <PcdsFixedAtBuild>
       gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8010004F
   }
+!endif
 
   #
   # AHCI Support

@@ -79,7 +79,7 @@
   gArmSgiTokenSpaceGuid.PcdWdogWS1Gsiv|0|UINT32|0x00000014
 
   # SMMU
-  gArmSgiTokenSpaceGuid.PcdSmmuBase|0|UINT32|0x0000001D
+  gArmSgiTokenSpaceGuid.PcdSmmuBase|0|UINT64|0x0000001D
   gArmSgiTokenSpaceGuid.PcdSmmuSize|0|UINT32|0x0000001E
 
   # GPIO Controller

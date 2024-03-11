@@ -1,6 +1,6 @@
 /** @file
 *
-*  Copyright (c) 2018-2023, ARM Limited. All rights reserved.
+*  Copyright (c) 2018-2024, Arm Limited. All rights reserved.
 *
 *  SPDX-License-Identifier: BSD-2-Clause-Patent
 *
@@ -167,8 +167,8 @@ ArmPlatformGetVirtualMemoryMap (
   VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
 
   // Sub System Peripherals - SMMU
-  VirtualMemoryTable[++Index].PhysicalBase  = FixedPcdGet32 (PcdSmmuBase);
-  VirtualMemoryTable[Index].VirtualBase     = FixedPcdGet32 (PcdSmmuBase);
+  VirtualMemoryTable[++Index].PhysicalBase  = FixedPcdGet64 (PcdSmmuBase);
+  VirtualMemoryTable[Index].VirtualBase     = FixedPcdGet64 (PcdSmmuBase);
   VirtualMemoryTable[Index].Length          = FixedPcdGet32 (PcdSmmuSize);
   VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
 

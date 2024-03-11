@@ -469,8 +469,7 @@ typedef struct {
 
     @param [in] DesiredPerfReg      Fastchannel address for desired performance
                                     register.
-    @param [in] PerfLimitedReg      Fastchannel address for performance limited
-                                    register.
+    @param [in] PerfLimitedReg      Address for performance limited register.
     @param [in] GranularityMHz      Granularity of the performance scale.
     @param [in] HighestPerf         Highest performance in linear scale.
     @param [in] NominalPerf         Nominal performance in linear scale.

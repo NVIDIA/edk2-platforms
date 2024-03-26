@@ -32,7 +32,6 @@
   SiPolicyLib
   PeiServicesLib
   FirmwareBootMediaLib
-  SpiLib
   BmpSupportLib
   PeiGetFvInfoLib
   TimerLib
@@ -205,4 +204,4 @@
   gPchPcieConfigGuid                            ## CONSUMES
   gSerialIoConfigGuid                           ## CONSUMES
   gPcieRpPreMemConfigGuid                       ## CONSUMES
-  gSaMiscPeiPreMemConfigGuid                    ## CONSUMES
+  gSaMiscPeiPreMemConfigGuid                    ## CONSUMES

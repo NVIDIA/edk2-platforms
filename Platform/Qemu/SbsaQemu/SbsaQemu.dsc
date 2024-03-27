@@ -671,6 +671,7 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   ArmPkg/Drivers/TimerDxe/TimerDxe.inf
   OvmfPkg/VirtNorFlashDxe/VirtNorFlashDxe.inf
   MdeModulePkg/Universal/WatchdogTimerDxe/WatchdogTimer.inf
+  Silicon/Qemu/SbsaQemu/Drivers/SbsaQemuHighMemDxe/SbsaQemuHighMemDxe.inf
 
   #
   # FAT filesystem + GPT/MBR partitioning

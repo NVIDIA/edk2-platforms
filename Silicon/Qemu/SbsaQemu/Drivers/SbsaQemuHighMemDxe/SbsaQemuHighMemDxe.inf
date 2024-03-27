@@ -1,0 +1,45 @@
+## @file
+#  High memory node enumeration DXE driver for SbsaQemu
+#
+#  Copyright (c) 2023, Linaro Ltd. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = SbsaQemuHighMemDxe
+  FILE_GUID                      = 9E749C5E-C282-32F8-7CC3-E5A3DDE15329
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+
+  ENTRY_POINT                    = InitializeHighMemDxe
+
+[Sources]
+  SbsaQemuHighMemDxe.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Silicon/Qemu/SbsaQemu/SbsaQemu.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  DxeServicesTableLib
+  HardwareInfoLib
+  PcdLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+
+[Protocols]
+  gEfiCpuArchProtocolGuid                 ## CONSUMES
+
+[Pcd]
+  gArmTokenSpaceGuid.PcdSystemMemoryBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdDxeNxMemoryProtectionPolicy
+
+[Depex]
+  gEfiCpuArchProtocolGuid

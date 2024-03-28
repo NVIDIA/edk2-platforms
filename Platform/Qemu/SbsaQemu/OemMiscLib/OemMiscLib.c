@@ -2,7 +2,7 @@
 *  OemMiscLib.c
 *
 *  Copyright (c) 2021, NUVIA Inc. All rights reserved.
-*  Copyright (c) 2020, Linaro Ltd. All rights reserved.
+*  Copyright (c) 2020-2024, Linaro Ltd. All rights reserved.
 *
 *  SPDX-License-Identifier: BSD-2-Clause-Patent
 *
@@ -12,14 +12,13 @@
 #include <Guid/ZeroGuid.h>
 #include <Library/BaseMemoryLib.h>
 #include <Library/DebugLib.h>
-#include <Library/FdtHelperLib.h>
 #include <Library/HiiLib.h>
 #include <Library/IoLib.h>
 #include <Library/OemMiscLib.h>
 #include <Library/PcdLib.h>
+#include <Library/HardwareInfoLib.h>
 #include <Library/SerialPortLib.h>
 #include <Library/TimerLib.h>
-#include <libfdt.h>
 
 /** Returns whether the specified processor is present or not.
 
@@ -33,7 +32,7 @@ OemIsProcessorPresent (
   UINTN ProcessorIndex
   )
 {
-  if (ProcessorIndex < FdtHelperCountCpus ()) {
+  if (ProcessorIndex < GetCpuCount ()) {
     return TRUE;
   }
 
@@ -76,7 +75,7 @@ OemGetProcessorInformation (
 {
   UINT16 ProcessorCount;
 
-  ProcessorCount = FdtHelperCountCpus ();
+  ProcessorCount = GetCpuCount ();
 
   if (ProcessorIndex < ProcessorCount) {
     ProcessorStatus->Bits.CpuStatus       = 1; // CPU enabled
@@ -121,7 +120,7 @@ OemGetMaxProcessors (
   VOID
   )
 {
-  return FdtHelperCountCpus ();
+  return GetCpuCount ();
 }
 
 /** Gets information about the cache at the specified cache level.

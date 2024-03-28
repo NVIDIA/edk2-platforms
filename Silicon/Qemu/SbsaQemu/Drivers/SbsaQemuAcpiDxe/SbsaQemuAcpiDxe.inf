@@ -1,7 +1,7 @@
 ## @file
 #  This driver modifies ACPI tables for the Qemu SBSA platform
 #
-#  Copyright (c) 2020, Linaro Ltd. All rights reserved.
+#  Copyright (c) 2020-2024, Linaro Ltd. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -35,7 +35,7 @@
   BaseLib
   DebugLib
   DxeServicesLib
-  FdtHelperLib
+  HardwareInfoLib
   PcdLib
   PrintLib
   UefiDriverEntryPoint
@@ -44,7 +44,6 @@
 
 [Pcd]
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiTableStorageFile
-  gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdCoreCount
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdClusterCount
 
   gArmTokenSpaceGuid.PcdGicDistributorBase

@@ -3,7 +3,7 @@
 #
 #    Copyright (c) 2021, NUVIA Inc. All rights reserved.
 #    Copyright (c) 2018, Hisilicon Limited. All rights reserved.
-#    Copyright (c) 2018, Linaro Limited. All rights reserved.
+#    Copyright (c) 2018-2024, Linaro Ltd. All rights reserved.
 #
 #    SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -29,8 +29,7 @@
 
 [LibraryClasses]
   BaseMemoryLib
-  FdtLib
-  FdtHelperLib
+  HardwareInfoLib
   IoLib
   PcdLib
 
@@ -40,7 +39,6 @@
 [Pcd]
   gArmTokenSpaceGuid.PcdEmbeddedControllerFirmwareRelease
   gArmTokenSpaceGuid.PcdSystemBiosRelease
-  gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdDeviceTreeBaseAddress
 
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdSystemManufacturer
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdSystemSerialNumber

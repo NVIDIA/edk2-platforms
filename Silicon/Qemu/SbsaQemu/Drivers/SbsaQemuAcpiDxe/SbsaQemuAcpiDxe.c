@@ -683,6 +683,91 @@ AddGtdtTable (
 }
 
 /*
+ * A function that adds the SRAT ACPI table.
+ */
+EFI_STATUS
+AddSratTable (
+  IN EFI_ACPI_TABLE_PROTOCOL   *AcpiTable
+  )
+{
+  EFI_STATUS            Status;
+  UINT8                 *New;
+  EFI_PHYSICAL_ADDRESS  PageAddress;
+  UINTN                 TableHandle;
+  UINT32                TableSize;
+  UINT32                Index;
+  UINT32                NodeId;
+  UINT32                NumMemNodes;
+  MemoryInfo            MemInfo;
+  UINT32                NumCores = GetCpuCount ();
+
+  // Initialize SRAT ACPI Header
+  EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_HEADER Header = {
+     SBSAQEMU_ACPI_HEADER (EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_SIGNATURE,
+                           EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_HEADER,
+                           EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_REVISION),
+      1, 0 };
+
+  NumMemNodes  = GetMemNodeCount();
+
+  // Calculate the new table size based on the number of cores
+  TableSize = sizeof (EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_HEADER) +
+               (sizeof (EFI_ACPI_6_4_MEMORY_AFFINITY_STRUCTURE) * NumMemNodes ) +
+               (sizeof (EFI_ACPI_6_4_GICC_AFFINITY_STRUCTURE) * NumCores);
+
+  Status = gBS->AllocatePages (
+                AllocateAnyPages,
+                EfiACPIReclaimMemory,
+                EFI_SIZE_TO_PAGES (TableSize),
+                &PageAddress
+                );
+
+  if (EFI_ERROR(Status)) {
+    DEBUG ((DEBUG_ERROR, "Failed to allocate pages for SRAT table\n"));
+    return EFI_OUT_OF_RESOURCES;
+  }
+
+  New = (UINT8 *)(UINTN) PageAddress;
+  ZeroMem (New, TableSize);
+
+  // Add the ACPI Description table header
+  CopyMem (New, &Header, sizeof (EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_HEADER));
+  ((EFI_ACPI_DESCRIPTION_HEADER*) New)->Length = TableSize;
+  New += sizeof (EFI_ACPI_6_4_SYSTEM_RESOURCE_AFFINITY_TABLE_HEADER);
+
+  // Add memory structures
+  for (Index = 0; Index < NumMemNodes ; Index++) {
+    GetMemInfo (Index, &MemInfo);
+    EFI_ACPI_6_4_MEMORY_AFFINITY_STRUCTURE memory = SBSAQEMU_ACPI_MEMORY_AFFINITY_STRUCTURE_INIT (MemInfo.NodeId, MemInfo.AddressBase, MemInfo.AddressSize, 1);
+    CopyMem (New, &memory, sizeof (EFI_ACPI_6_4_MEMORY_AFFINITY_STRUCTURE));
+    New += sizeof (EFI_ACPI_6_4_MEMORY_AFFINITY_STRUCTURE);
+  }
+
+  // Add processor structures for the cores
+  for (Index = 0; Index < NumCores; Index++) {
+    NodeId = GetCpuNumaNode(Index);
+    EFI_ACPI_6_4_GICC_AFFINITY_STRUCTURE gicc = SBSAQEMU_ACPI_GICC_AFFINITY_STRUCTURE_INIT(NodeId, Index, 1, 0);
+    CopyMem (New, &gicc, sizeof (EFI_ACPI_6_4_GICC_AFFINITY_STRUCTURE));
+    New += sizeof (EFI_ACPI_6_4_GICC_AFFINITY_STRUCTURE);
+  }
+
+  // Perform Checksum
+  AcpiPlatformChecksum ((UINT8*) PageAddress, TableSize);
+
+  Status = AcpiTable->InstallAcpiTable (
+                        AcpiTable,
+                        (EFI_ACPI_COMMON_HEADER *)PageAddress,
+                        TableSize,
+                        &TableHandle
+                        );
+  if (EFI_ERROR(Status)) {
+    DEBUG ((DEBUG_ERROR, "Failed to install SRAT table\n"));
+  }
+
+  return Status;
+}
+
+/*
  * A function to disable XHCI node on Platform Version lower than 0.3
  */
 STATIC
@@ -791,6 +876,13 @@ InitializeSbsaQemuAcpiDxe (
   Status = AddPpttTable (AcpiTable);
   if (EFI_ERROR (Status)) {
     DEBUG ((DEBUG_ERROR, "Failed to add PPTT table\n"));
+  }
+
+  if (GetNumaNodeCount() > 1){
+    Status = AddSratTable (AcpiTable);
+    if (EFI_ERROR (Status)) {
+      DEBUG ((DEBUG_ERROR, "Failed to add SRAT table\n"));
+    }
   }
 
   Status = AddGtdtTable (AcpiTable);

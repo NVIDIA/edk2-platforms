@@ -143,3 +143,39 @@ GetMemInfo (
       MemInfo->AddressBase + MemInfo->AddressSize -1 ));
 
 }
+
+UINT64
+GetNumaNodeCount (
+  VOID
+)
+{
+  UINT64                Arg;
+  UINT32                Index;
+  UINT32                NumberNumaNodes;
+  UINT32                NumberMemNodes;
+  UINT32                NumCores = GetCpuCount();
+  MemoryInfo            MemInfo;
+
+  NumberNumaNodes = 0;
+  NumberMemNodes = GetMemNodeCount();
+
+  if (NumCores > 0){
+    for (Index = 0; Index < NumCores; Index ++){
+      Arg = GetCpuNumaNode(Index);
+      if (NumberNumaNodes == 0 || NumberNumaNodes < (Arg + 1)){
+        NumberNumaNodes = Arg + 1;
+      }
+    }
+  }
+
+  if (NumberMemNodes > 0){
+    for (Index = 0; Index < NumberMemNodes; Index ++){
+      GetMemInfo(Index, &MemInfo);
+      if (NumberNumaNodes == 0 || NumberNumaNodes < (MemInfo.NodeId + 1)){
+        NumberNumaNodes = MemInfo.NodeId + 1;
+      }
+    }
+  }
+
+  return NumberNumaNodes;
+}

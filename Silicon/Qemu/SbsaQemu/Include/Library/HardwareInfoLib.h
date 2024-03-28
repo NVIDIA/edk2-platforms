@@ -73,4 +73,14 @@ GetMemInfo (
   OUT MemoryInfo  *MemInfo
   );
 
+/**
+  Get the number of numa node from device tree passed by Qemu.
+
+  @retval                the number of numa node.
+**/
+UINT64
+GetNumaNodeCount (
+  VOID
+  );
+
 #endif /* HARDWARE_INFO_LIB */

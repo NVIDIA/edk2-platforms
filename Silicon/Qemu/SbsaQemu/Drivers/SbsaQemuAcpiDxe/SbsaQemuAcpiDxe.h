@@ -63,4 +63,31 @@ typedef struct {
 
 #define GTDT_WDTIMER_FLAGS          (GTDT_WDTIMER_ACTIVE_HIGH | GTDT_WDTIMER_LEVEL_TRIGGERED)
 
+#define SBSAQEMU_ACPI_MEMORY_AFFINITY_STRUCTURE_INIT(                             \
+          ProximityDomain, Base, Length, Flags)                                   \
+  {                                                                               \
+    1,                                                  /* Type */                \
+    sizeof (EFI_ACPI_6_4_MEMORY_AFFINITY_STRUCTURE),    /* Length */              \
+    ProximityDomain,                                    /* Proximity Domain */    \
+    0,                                                  /* Reserved */            \
+    (Base) & 0xffffffff,                                /* Base Address Low */    \
+    ((Base) >> 32) & 0xffffffff ,                       /* Base Address High */   \
+    (Length) & 0xffffffff,                              /* Length Low */          \
+    ((Length) >> 32) & 0xffffffff,                      /* Length High */         \
+    0,                                                  /* Reserved */            \
+    Flags,                                              /* Flags */               \
+    0                                                   /* Reserved */            \
+  }
+
+#define SBSAQEMU_ACPI_GICC_AFFINITY_STRUCTURE_INIT(                               \
+          ProximityDomain, ACPIProcessorUID, Flags, ClockDomain)                  \
+  {                                                                               \
+    3,                                                  /* Type */                \
+    sizeof (EFI_ACPI_6_4_GICC_AFFINITY_STRUCTURE),      /* Length */              \
+    ProximityDomain,                                    /* Proximity Domain */    \
+    ACPIProcessorUID,                                   /* ACPI Processor UID */  \
+    Flags,                                              /* Flags */               \
+    ClockDomain                                         /* Clock Domain */        \
+  }
+
 #endif

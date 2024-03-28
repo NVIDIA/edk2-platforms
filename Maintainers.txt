@@ -357,8 +357,9 @@ Marvell platforms and silicon
 F: Platform/Marvell/
 F: Platform/SolidRun/
 F: Silicon/Marvell/
-R: Marcin Wojtas <marcin.s.wojtas@gmail.com>
-M: Leif Lindholm <quic_llindhol@quicinc.com>
+M: Marcin Wojtas <marcin.s.wojtas@gmail.com> [wojtas-marcin]
+M: Narinder Dhillon <ndhillon@marvell.com> [ndhillonm]
+R: Leif Lindholm <quic_llindhol@quicinc.com> [leiflindholm]
 
 Miscellaneous drivers
 F: Silicon/Atmel/

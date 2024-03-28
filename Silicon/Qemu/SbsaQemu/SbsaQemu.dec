@@ -12,6 +12,8 @@
   PACKAGE_GUID                   = 8db32c5a-2821-43e2-b4ac-bc148e2b0b05
   PACKAGE_VERSION                = 0.1
 
+[LibraryClasses]
+HardwareInfoLib|Include/Library/HardwareInfoLib.h
 ################################################################################
 #
 # Include Section - list of Include Paths that are provided by this package.

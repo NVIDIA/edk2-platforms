@@ -1,6 +1,6 @@
 #
 #  Copyright (c) 2021, NUVIA Inc. All rights reserved.
-#  Copyright (c) 2019, Linaro Limited. All rights reserved.
+#  Copyright (c) 2019-2024, Linaro Ltd. All rights reserved.
 #
 #  SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -128,6 +128,7 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
 
   FdtHelperLib|Silicon/Qemu/SbsaQemu/Library/FdtHelperLib/FdtHelperLib.inf
   OemMiscLib|Platform/Qemu/SbsaQemu/OemMiscLib/OemMiscLib.inf
+  HardwareInfoLib|Silicon/Qemu/SbsaQemu/Library/SbsaQemuHardwareInfoLib/SbsaQemuHardwareInfoLib.inf
 
   # Debug Support
   PeCoffExtraActionLib|ArmPkg/Library/DebugPeCoffExtraActionLib/DebugPeCoffExtraActionLib.inf

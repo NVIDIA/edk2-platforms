@@ -1,0 +1,29 @@
+#/* @file
+#
+#  Copyright (c) 2024, Linaro Ltd. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#*/
+
+[Defines]
+  INF_VERSION                    = 0x0001001c
+  BASE_NAME                      = SbsaQemuHardwareInfoLib
+  FILE_GUID                      = 6454006f-6502-46e2-9be4-4bba8d4b29fb
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = HardwareInfoLib
+
+[Sources]
+  SbsaQemuHardwareInfoLib.c
+
+[Packages]
+  ArmPkg/ArmPkg.dec
+  EmbeddedPkg/EmbeddedPkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  Silicon/Qemu/SbsaQemu/SbsaQemu.dec
+
+[LibraryClasses]
+  ArmSmcLib
+  ResetSystemLib

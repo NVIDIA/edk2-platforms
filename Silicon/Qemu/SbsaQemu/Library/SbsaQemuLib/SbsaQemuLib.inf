@@ -32,14 +32,13 @@
   ArmLib
   BaseMemoryLib
   DebugLib
-  FdtLib
+  HardwareInfoLib
   MemoryAllocationLib
   PcdLib
 
 [Pcd]
   gArmTokenSpaceGuid.PcdSystemMemoryBase
   gArmTokenSpaceGuid.PcdSystemMemorySize
-  gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdDeviceTreeBaseAddress
 
 [FixedPcd]
   gArmTokenSpaceGuid.PcdFdBaseAddress

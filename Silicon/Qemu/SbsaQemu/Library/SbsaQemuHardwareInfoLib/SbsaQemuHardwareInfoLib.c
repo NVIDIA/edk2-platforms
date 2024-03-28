@@ -94,3 +94,52 @@ GetCpuNumaNode (
 
   return Arg0;
 }
+
+UINT32
+GetMemNodeCount (
+  VOID
+  )
+{
+  UINTN            SmcResult;
+  UINTN            Arg0;
+
+  SmcResult = ArmCallSmc0 (SIP_SVC_GET_MEMORY_NODE_COUNT, &Arg0, NULL, NULL);
+  if (SmcResult != SMC_SIP_CALL_SUCCESS) {
+    DEBUG ((DEBUG_ERROR, "%a: SIP_SVC_GET_MEMORY_NODE_COUNT call failed. We have no memory information.\n", __FUNCTION__));
+    ResetShutdown ();
+  }
+
+  DEBUG (( DEBUG_INFO, "%a: The number of the memory nodes is %ld\n", __FUNCTION__, Arg0));
+  return (UINT32)Arg0;
+}
+
+VOID
+GetMemInfo (
+  IN  UINTN       MemoryId,
+  OUT MemoryInfo  *MemInfo
+  )
+{
+  UINTN           SmcResult;
+  UINTN           Arg0;
+  UINTN           Arg1;
+  UINTN           Arg2;
+
+  Arg0 = MemoryId;
+
+  SmcResult = ArmCallSmc1 (SIP_SVC_GET_MEMORY_NODE, &Arg0, &Arg1, &Arg2);
+  if (SmcResult != SMC_SIP_CALL_SUCCESS) {
+    DEBUG ((DEBUG_ERROR, "%a: SIP_SVC_GET_MEMORY_NODE call failed. We have no memory information.\n", __FUNCTION__));
+    ResetShutdown ();
+  } else {
+    MemInfo->NodeId = Arg0;
+    MemInfo->AddressBase = Arg1;
+    MemInfo->AddressSize = Arg2;
+  }
+
+  DEBUG(( DEBUG_INFO, "%a: NUMA node for System RAM:%d = 0x%lx - 0x%lx\n",
+      __FUNCTION__,
+      MemInfo->NodeId,
+      MemInfo->AddressBase,
+      MemInfo->AddressBase + MemInfo->AddressSize -1 ));
+
+}

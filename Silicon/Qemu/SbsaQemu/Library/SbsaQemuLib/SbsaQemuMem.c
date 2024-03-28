@@ -12,7 +12,7 @@
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/PcdLib.h>
-#include <libfdt.h>
+#include <Library/HardwareInfoLib.h>
 
 // Number of Virtual Memory Map Descriptors
 #define MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS          4
@@ -23,53 +23,25 @@ SbsaQemuLibConstructor (
   VOID
   )
 {
-  VOID          *DeviceTreeBase;
-  INT32         Node, Prev;
   UINT64        NewBase, CurBase;
   UINT64        NewSize, CurSize;
-  CONST CHAR8   *Type;
-  INT32         Len;
-  CONST UINT64  *RegProp;
+  UINT32        NumMemNodes;
+  UINT32        Index;
+  MemoryInfo    MemInfo;
   RETURN_STATUS PcdStatus;
 
   NewBase = 0;
   NewSize = 0;
 
-  DeviceTreeBase = (VOID *)(UINTN)PcdGet64 (PcdDeviceTreeBaseAddress);
-  ASSERT (DeviceTreeBase != NULL);
+  NumMemNodes = GetMemNodeCount();
+  for(Index = 0; Index < NumMemNodes; Index++){
+    GetMemInfo(Index, &MemInfo);
+    CurBase = MemInfo.AddressBase;
+    CurSize = MemInfo.AddressSize;
 
-  // Make sure we have a valid device tree blob
-  ASSERT (fdt_check_header (DeviceTreeBase) == 0);
-
-  // Look for the lowest memory node
-  for (Prev = 0;; Prev = Node) {
-    Node = fdt_next_node (DeviceTreeBase, Prev, NULL);
-    if (Node < 0) {
-      break;
-    }
-
-    // Check for memory node
-    Type = fdt_getprop (DeviceTreeBase, Node, "device_type", &Len);
-    if (Type && AsciiStrnCmp (Type, "memory", Len) == 0) {
-      // Get the 'reg' property of this node. For now, we will assume
-      // two 8 byte quantities for base and size, respectively.
-      RegProp = fdt_getprop (DeviceTreeBase, Node, "reg", &Len);
-      if (RegProp != 0 && Len == (2 * sizeof (UINT64))) {
-
-        CurBase = fdt64_to_cpu (ReadUnaligned64 (RegProp));
-        CurSize = fdt64_to_cpu (ReadUnaligned64 (RegProp + 1));
-
-        DEBUG ((DEBUG_INFO, "%a: System RAM @ 0x%lx - 0x%lx\n",
-          __FUNCTION__, CurBase, CurBase + CurSize - 1));
-
-        if (NewBase > CurBase || NewBase == 0) {
-          NewBase = CurBase;
-          NewSize = CurSize;
-        }
-      } else {
-        DEBUG ((DEBUG_ERROR, "%a: Failed to parse FDT memory node\n",
-          __FUNCTION__));
-      }
+    if (NewBase > CurBase || NewBase == 0) {
+      NewBase = CurBase;
+      NewSize = CurSize;
     }
   }
 

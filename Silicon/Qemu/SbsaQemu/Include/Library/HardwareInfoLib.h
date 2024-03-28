@@ -9,6 +9,12 @@
 #ifndef HARDWARE_INFO_LIB
 #define HARDWARE_INFO_LIB
 
+typedef struct{
+  UINT32  NodeId;
+  UINT64  AddressBase;
+  UINT64  AddressSize;
+} MemoryInfo;
+
 /**
   Get CPU count from information passed by Qemu.
 
@@ -40,6 +46,31 @@ GetMpidr (
 UINT64
 GetCpuNumaNode (
   IN UINTN  CpuId
+  );
+
+/**
+  Get the number of memory node from device tree passed by Qemu.
+
+  @retval                   the number of memory nodes.
+**/
+UINT32
+GetMemNodeCount (
+  VOID
+  );
+
+/**
+  Get memory information(node-id, addressbase, addresssize) for a given memory node from device tree passed by Qemu.
+
+  @param [in]   MemoryId    Index of memory to retrieve memory information.
+  @param [out]  MemInfo     A pointer to the memory information of given memory-id.
+
+
+  @retval                   memory infomation for given memory node.
+**/
+VOID
+GetMemInfo (
+  IN  UINTN       MemoryId,
+  OUT MemoryInfo  *MemInfo
   );
 
 #endif /* HARDWARE_INFO_LIB */

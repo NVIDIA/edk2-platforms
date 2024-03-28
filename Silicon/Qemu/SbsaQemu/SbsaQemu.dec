@@ -36,7 +36,6 @@ HardwareInfoLib|Include/Library/HardwareInfoLib.h
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdPlatformAhciSize|0x10000|UINT32|0x00000002
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdPlatformXhciBase|0|UINT64|0x00000003
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdPlatformXhciSize|0x10000|UINT32|0x00000004
-  gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdDeviceTreeBaseAddress|0x10000000000|UINT64|0x00000005
 
   # PCDs complementing PCIe layout pulled into ACPI tables
   # Limit = Base + Size - 1

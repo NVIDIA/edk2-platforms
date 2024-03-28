@@ -17,8 +17,6 @@
 #include <IndustryStandard/SbsaQemuSmc.h>
 #include <IndustryStandard/SbsaQemuPlatformVersion.h>
 
-#include <Protocol/FdtClient.h>
-
 EFI_STATUS
 EFIAPI
 InitializeSbsaQemuPlatformDxe (

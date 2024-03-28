@@ -80,7 +80,6 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
   ImagePropertiesRecordLib|MdeModulePkg/Library/ImagePropertiesRecordLib/ImagePropertiesRecordLib.inf
 
-  FdtLib|EmbeddedPkg/Library/FdtLib/FdtLib.inf
   UefiRuntimeLib|MdePkg/Library/UefiRuntimeLib/UefiRuntimeLib.inf
   OrderedCollectionLib|MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf
 
@@ -126,7 +125,6 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   # ARM PL011 UART Driver
   PL011UartLib|ArmPlatformPkg/Library/PL011UartLib/PL011UartLib.inf
 
-  FdtHelperLib|Silicon/Qemu/SbsaQemu/Library/FdtHelperLib/FdtHelperLib.inf
   OemMiscLib|Platform/Qemu/SbsaQemu/OemMiscLib/OemMiscLib.inf
   HardwareInfoLib|Silicon/Qemu/SbsaQemu/Library/SbsaQemuHardwareInfoLib/SbsaQemuHardwareInfoLib.inf
 
@@ -430,9 +428,6 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   #
   gEmbeddedTokenSpaceGuid.PcdPrePiCpuIoSize|16
 
-  # Initial Device Tree Location
-  gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdDeviceTreeBaseAddress|0x10000000000
-
   # Non discoverable devices (AHCI,XHCI)
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdPlatformAhciBase|0x60100000
   gArmVirtSbsaQemuPlatformTokenSpaceGuid.PcdPlatformAhciSize|0x00010000
@@ -731,7 +726,6 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   #
   ArmPkg/Universal/Smbios/ProcessorSubClassDxe/ProcessorSubClassDxe.inf
   ArmPkg/Universal/Smbios/SmbiosMiscDxe/SmbiosMiscDxe.inf
-  EmbeddedPkg/Library/FdtLib/FdtLib.inf
   MdeModulePkg/Universal/SmbiosDxe/SmbiosDxe.inf
   Silicon/Qemu/SbsaQemu/Drivers/SbsaQemuSmbiosDxe/SbsaQemuSmbiosDxe.inf
 

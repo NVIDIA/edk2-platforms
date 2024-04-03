@@ -37,6 +37,9 @@
   gArmSgiTokenSpaceGuid.PcdDramBlock2Base|0|UINT64|0x00000002
   gArmSgiTokenSpaceGuid.PcdDramBlock2Size|0|UINT64|0x00000003
 
+  # L2 Cache size
+  gArmSgiTokenSpaceGuid.PcdL2CacheSize|0x100000|UINT32|0x0000002F
+
   # Virtio Block device
   gArmSgiTokenSpaceGuid.PcdVirtioBlkBaseAddress|0x00000000|UINT32|0x00000004
   gArmSgiTokenSpaceGuid.PcdVirtioBlkSize|0x00000000|UINT32|0x00000005

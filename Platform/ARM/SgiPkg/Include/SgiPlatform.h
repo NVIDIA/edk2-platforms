@@ -51,6 +51,10 @@
 #define RD_V2_PART_NUM                            0x7F2
 #define RD_V2_CONF_ID                             0x1
 
+// RD-Fremont Platform Identification values
+#define RD_Fremont_PART_NUM                       0x7EE
+#define RD_Fremont_CONF_ID                        0x1
+
 #define SGI_CONFIG_MASK                           0x0F
 #define SGI_CONFIG_SHIFT                          0x1C
 #define SGI_PART_NUM_MASK                         0xFFF
@@ -90,6 +94,7 @@ typedef enum {
   RdN2Cfg1,
   RdN2Cfg2,
   RdV2,
+  RdFremont,
 } ARM_RD_PRODUCT_ID;
 
 // Arm ProductId look-up table

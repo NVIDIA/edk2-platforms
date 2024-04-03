@@ -81,7 +81,7 @@
     EFI_ACPI_6_4_PPTT_STRUCTURE_CACHE_INIT (                                   \
       PPTT_CACHE_STRUCTURE_FLAGS,           /* Flag */                         \
       0,                                    /* Next level of cache */          \
-      SIZE_1MB,                             /* Size */                         \
+      FixedPcdGet32 (PcdL2CacheSize),       /* Size */                         \
       2048,                                 /* Num of sets */                  \
       8,                                    /* Associativity */                \
       PPTT_UNIFIED_CACHE_ATTR,              /* Attributes */                   \

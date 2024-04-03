@@ -60,6 +60,7 @@
   gArmSgiTokenSpaceGuid.PcdGtFrame1Gsiv
   gArmSgiTokenSpaceGuid.PcdIoVirtSocExpBlk0Base
   gArmSgiTokenSpaceGuid.PcdIoVirtSocExpBlkUartEnable
+  gArmSgiTokenSpaceGuid.PcdL2CacheSize
   gArmSgiTokenSpaceGuid.PcdMaxAddressBitsPerChip
   gArmSgiTokenSpaceGuid.PcdOscLpiEnable
   gArmSgiTokenSpaceGuid.PcdOscCppcEnable

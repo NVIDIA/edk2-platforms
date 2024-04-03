@@ -1,6 +1,6 @@
 /** @file
 *
-*  Copyright (c) 2018 - 2022, Arm Limited. All rights reserved.
+*  Copyright (c) 2018 - 2024, Arm Limited. All rights reserved.
 *
 *  SPDX-License-Identifier: BSD-2-Clause-Patent
 *
@@ -47,6 +47,10 @@
 #define RD_N2_PART_NUM                            0x7B7
 #define RD_N2_CONF_ID                             0x1
 
+// RD-V2 Platform Identification values
+#define RD_V2_PART_NUM                            0x7F2
+#define RD_V2_CONF_ID                             0x1
+
 #define SGI_CONFIG_MASK                           0x0F
 #define SGI_CONFIG_SHIFT                          0x1C
 #define SGI_PART_NUM_MASK                         0xFFF
@@ -85,6 +89,7 @@ typedef enum {
   RdN2,
   RdN2Cfg1,
   RdN2Cfg2,
+  RdV2,
 } ARM_RD_PRODUCT_ID;
 
 // Arm ProductId look-up table

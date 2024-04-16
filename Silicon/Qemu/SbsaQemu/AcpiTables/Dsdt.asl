@@ -77,15 +77,12 @@ DefinitionBlock ("DsdtTable.aml", "DSDT",
         Method (_STA) {
           Return (XHCI)
         }
-        Method (_CRS, 0x0, Serialized) {
-            Name (RBUF, ResourceTemplate() {
-                Memory32Fixed (ReadWrite,
-                               FixedPcdGet32 (PcdPlatformXhciBase),
-                               FixedPcdGet32 (PcdPlatformXhciSize))
-                Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive) { 43 }
-            })
-            Return (RBUF)
-        }
+        Name (_CRS, ResourceTemplate() {
+            Memory32Fixed (ReadWrite,
+                           FixedPcdGet32 (PcdPlatformXhciBase),
+                           FixedPcdGet32 (PcdPlatformXhciSize))
+            Interrupt (ResourceConsumer, Level, ActiveHigh, Exclusive) { 43 }
+        })
 
         // Root Hub
         Device (RHUB) {
@@ -371,8 +368,7 @@ DefinitionBlock ("DsdtTable.aml", "DSDT",
       })
 
       // Root complex resources
-      Method (_CRS, 0, Serialized) {
-      Name (RBUF, ResourceTemplate () {
+      Name (_CRS, ResourceTemplate () {
         WordBusNumber ( // Bus numbers assigned to this root
         ResourceProducer,
         MinFixed, MaxFixed, PosDecode,
@@ -418,10 +414,7 @@ DefinitionBlock ("DsdtTable.aml", "DSDT",
           FixedPcdGet32 (PcdPciIoSize),            // Length
           ,,,TypeTranslation
           )
-        }) // Name(RBUF)
-
-        Return (RBUF)
-      } // Method(_CRS)
+      }) // Name(_CRS)
 
       Device (RES0)
       {

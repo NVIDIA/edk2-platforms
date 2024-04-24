@@ -437,16 +437,6 @@ DEFINE NETWORK_HTTP_BOOT_ENABLE       = FALSE
   # PL011 - Serial Terminal
   gEfiMdeModulePkgTokenSpaceGuid.PcdSerialRegisterBase|0x60000000
 
-  # Timer IRQs
-  # PPI #13
-  gArmTokenSpaceGuid.PcdArmArchTimerSecIntrNum|29
-  # PPI #14
-  gArmTokenSpaceGuid.PcdArmArchTimerIntrNum|30
-  # PPI #11
-  gArmTokenSpaceGuid.PcdArmArchTimerVirtIntrNum|27
-  # PPI #10
-  gArmTokenSpaceGuid.PcdArmArchTimerHypIntrNum|26
-
   ## PL031 RealTimeClock
   gArmPlatformTokenSpaceGuid.PcdPL031RtcBase|0x60010000
 

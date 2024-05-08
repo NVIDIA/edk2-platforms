@@ -1,7 +1,7 @@
 ## @file
 #  FDF file of Platform.
 #
-#   Copyright (c) 2022, Intel Corporation. All rights reserved.<BR>
+#   Copyright (c) 2022 - 2024, Intel Corporation. All rights reserved.<BR>
 #   SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 ##
@@ -343,6 +343,14 @@ INF $(PLATFORM_PACKAGE)/PlatformInit/PlatformInitPei/PlatformInitPostMem.inf
 INF $(PLATFORM_BOARD_PACKAGE)/OpenBoardPlatformInit/OpenBoardPlatformInitPei/OpenBoardPlatformInitPostMem.inf
 INF $(PLATFORM_PACKAGE)/PlatformInit/SiliconPolicyPei/SiliconPolicyPeiPostMem.inf
 INF IntelFsp2WrapperPkg/FspsWrapperPeim/FspsWrapperPeim.inf
+
+#
+# ADL FSP includes an older version of CpuMpPei, so the compatibility PEIM
+# is needed when using FSP Dispatch mode.
+#
+!if gIntelFsp2WrapperTokenSpaceGuid.PcdFspModeSelection == 0
+  INF $(PLATFORM_PACKAGE)/FspWrapper/MpInfo2HobPei/MpInfo2HobPei.inf
+!endif
 
 
 [FV.FvPostMemory]

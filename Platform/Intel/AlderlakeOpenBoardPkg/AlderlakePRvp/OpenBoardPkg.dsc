@@ -1,7 +1,7 @@
 ## @file
 #  The main build description file for the AlderlakePRvp board.
 #
-#   Copyright (c) 2022, Intel Corporation. All rights reserved.<BR>
+#   Copyright (c) 2022 - 2024, Intel Corporation. All rights reserved.<BR>
 #   SPDX-License-Identifier: BSD-2-Clause-Patent
 #
 ##
@@ -341,6 +341,14 @@ ResetSystemLib|$(PLATFORM_SI_PACKAGE)/Pch/Library/BaseResetSystemLib/BaseResetSy
   IntelFsp2WrapperPkg/FspsWrapperPeim/FspsWrapperPeim.inf {
     <LibraryClasses>
   }
+
+  #
+  # ADL FSP includes an older version of CpuMpPei, so the compatibility PEIM
+  # is needed when using FSP Dispatch mode.
+  #
+!if gIntelFsp2WrapperTokenSpaceGuid.PcdFspModeSelection == 0
+  $(PLATFORM_PACKAGE)/FspWrapper/MpInfo2HobPei/MpInfo2HobPei.inf
+!endif
 
 #
 # Security

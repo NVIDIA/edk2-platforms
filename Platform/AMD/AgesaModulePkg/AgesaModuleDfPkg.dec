@@ -1,0 +1,25 @@
+## @file
+# AMD Generic Encapsulated Software Architecture (AGESA) FCH Module Package DEC
+# file.
+# This file provides the minimum AMD Data Fabric package definitions for building AMD
+# edk2 modules.
+#
+#  Copyright (C) 2016-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION     = 0x00010005
+  PACKAGE_NAME          = AgesaDfPkg
+  PACKAGE_GUID          = 81e51ee3-c347-4563-92fe-790ba953bf0f
+  PACKAGE_VERSION       = 0.1
+
+[Guids]
+  gAmdTotalNumberOfRootBridgesGuid         = {0xfb5703f5, 0xf8a7, 0xf401, {0x18, 0xb4, 0x3f, 0x10, 0x8d, 0xeb, 0x26, 0x12}}
+  gAmdResourceSizeForEachRbGuid            = {0x542b8f2f, 0xbd52, 0x4233, {0x8c, 0x3d, 0x66, 0x53, 0x0d, 0xe8, 0xa3, 0x69}}
+
+[Protocols]
+  gAmdFabricNumaServices2ProtocolGuid      = {0xa8ff2e64, 0xf319, 0x4af1, {0x9e, 0xc8, 0x18, 0x89, 0x89, 0xc3, 0x1e, 0x4a}}
+

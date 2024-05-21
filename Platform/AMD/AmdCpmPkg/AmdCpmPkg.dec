@@ -1,0 +1,41 @@
+## @file
+#  AMD Common Platform Module (CPM) Module Package DEC.
+#
+#  Copyright (C) 2012-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION     = 0x00010005
+  PACKAGE_NAME          = CpmPkg
+  PACKAGE_GUID          = ABE128BA-1061-4A53-A1B8-D07329AA7A67
+  PACKAGE_VERSION       = 0.1
+
+[Includes]
+  Include
+  Library
+
+[Guids]
+  gAmdCpmPkgTokenSpaceGuid        = {0x916e0ddd, 0x2bd2, 0x4704, {0x93, 0xb9, 0x59, 0x4b, 0x01, 0xa5, 0xfa, 0x9f}}
+  gShellActHiiGuid                = {0x340EBE97, 0x3C1C, 0x4272, {0x9C, 0xCE, 0xC1, 0xFF, 0x86, 0x6F, 0x73, 0x3C}}
+  gAmdPbsSystemConfigurationGuid  = {0xa339d746, 0xf678, 0x49b3, {0x9f, 0xc7, 0x54, 0xce, 0x0f, 0x9d, 0xf2, 0x26}}
+
+[Protocols]
+  gAmdCpmTableProtocolGuid                      = { 0x3724cf01, 0x00c2, 0x9762, {0x11, 0xb3, 0x0e, 0xa8, 0xaa, 0x89, 0x72, 0x00 }}
+  gAmdCpmAllPciIoProtocolsInstalledProtocolGuid = { 0x676D7012, 0x139B, 0x485A, {0x96, 0xF1, 0x98, 0x6F, 0xC4, 0x8A, 0x86, 0x4B }}
+
+[Ppis]
+  gAmdCpmTablePpiGuid = { 0xd71cf893, 0xa8b5, 0x49d3, { 0xa2, 0x1b, 0x31, 0xe2, 0xf5, 0xc4, 0xa7, 0x47 } }
+
+[PcdsFixedAtBuild]
+  gAmdCpmPkgTokenSpaceGuid.PcdFchUartPort|2|UINT8|0x00000052
+
+  #ACPI
+  gAmdCpmPkgTokenSpaceGuid.PcdAmdAcpiHestTableHeaderOemTableId|"AMD HEST"|VOID*|0x000AC001
+  gAmdCpmPkgTokenSpaceGuid.PcdAmdAcpiBertTableHeaderOemTableId|"AMD BERT"|VOID*|0x000AC002
+  gAmdCpmPkgTokenSpaceGuid.PcdAmdAcpiEinjTableHeaderOemTableId|"AMD EINJ"|VOID*|0x000AC003
+
+  gAmdCpmPkgTokenSpaceGuid.UsePciXAslName|FALSE|BOOLEAN|0x12000003
+  gAmdCpmPkgTokenSpaceGuid.AcpiRestoreSwSmi|0xE3|UINT8|0x00000040

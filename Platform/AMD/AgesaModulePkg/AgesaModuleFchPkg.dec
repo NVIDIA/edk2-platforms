@@ -1,0 +1,62 @@
+## @file
+# AMD Generic Encapsulated Software Architecture (AGESA) FCH Module Package DEC
+# file.
+# This file provides the minimum AMD Fusion Control Hub package definitions for building AMD
+# edk2 modules.
+#
+#  Copyright (C) 2016-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  DEC_SPECIFICATION     = 1.5
+  PACKAGE_NAME          = AgesaFchPkg
+  PACKAGE_GUID          = e47c8ed9-3000-4e6e-b1c6-875b365b3849
+  PACKAGE_VERSION       = 0.1
+
+[Includes]
+  Include
+
+[Guids]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid = { 0x7788adf0, 0x9788, 0x4a3f, { 0x83, 0xfa, 0xcb, 0x51, 0x2e, 0x7c, 0xf8, 0xdd } }
+
+[Protocols]
+  gFchInitDonePolicyProtocolGuid      = { 0xc63c0c73, 0xf612, 0x4c02, { 0x84, 0xa3, 0xc6, 0x40, 0xad, 0x0b, 0xa6, 0x22 } }
+
+[PcdsDynamic]
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLegacyFree|FALSE|BOOLEAN|0x0003F001
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdHpetEnable|TRUE|BOOLEAN|0x0003F002
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdHpetMsiDis|TRUE|BOOLEAN|0x0003F003
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdResetMode|0x00|UINT8|0x0003F00D
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdNoneSioKbcSupport|FALSE|BOOLEAN|0x0003F021
+
+  ### @brief This item allows the customer to change OC signal polarity to be active low. This is universal and applies to all OC pins.
+  ### @brief Permitted Choices: (Type: Boolean)(Default: FALSE)At present, this control applies to Family17h Model 00h-2Fh.
+  ### @li TRUE - OC pin is low when OC occurs.
+  ### @li FALSE - OC pin is high when OC occurs.
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciOcPolarityCfgLow|FALSE|BOOLEAN|0x0003F309
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb20OcPinSelect|0xFFFFFFFFFFFFFFFF|UINT64|0x0003F340
+                                                                                               #Die 0
+                                                                                               #[7:0]  SSP -- 2 USB 2.0 ports on XHCI controller 0
+                                                                                               #[15:8] SSP -- 2 USB 2.0 ports on XHCI controller 1
+                                                                                               #[23:0] MTS -- 6 USB 2.0 ports on XHCI controller 0
+                                                                                               #Die 1
+                                                                                               #[39:32] SSP -- 2 USB 2.0 ports on XHCI controller 0
+                                                                                               #[47:40] SSP -- 2 USB 2.0 ports on XHCI controller 1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciUsb31OcPinSelect|0xFFFFFFFF|UINT32|0x0003F341
+                                                                                               #Die 0
+                                                                                               #[7:0]  SSP -- 2 USB 3.1 ports on XHCI controller 0
+                                                                                               #[15:8] SSP -- 2 USB 3.1 ports on XHCI controller 1
+                                                                                               #[15:0] MTS -- 4 USB 3.1 ports on XHCI controller 0
+                                                                                               #Die 1
+                                                                                               #[23:16] SSP -- 2 USB 3.1 ports on XHCI controller 0
+                                                                                               #[31:24] SSP -- 2 USB 3.1 ports on XHCI controller 1
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdLpcEnable|TRUE|BOOLEAN|0x0003F400
+
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdUsbRSOemConfigurationTable|{0x0}|VOID*|0x0003F40A
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdXhciSsid|0x00000000|UINT32|0x0003FF07
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.FchRTDeviceEnableMap|0x00000000|UINT32|0x0003FF81

@@ -1,0 +1,53 @@
+## @file
+#
+#  Copyright (C) 2022-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdAutoDynamicCommand
+  FILE_GUID                      = CCD8FEC8-1E30-45BD-8632-DB83A255FAC3
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.1
+  ENTRY_POINT                    = ActCommandInitialize
+  UNLOAD_IMAGE                   = ActLibraryUnregisterActCommand
+  UEFI_HII_RESOURCE_SECTION      = TRUE
+
+[Sources.common]
+  AmdAutoDynamicCommand.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  FileHandleLib
+  HiiLib
+  DebugLib
+  BaseMemoryLib
+  MemoryAllocationLib
+  UefiRuntimeServicesTableLib
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiHiiServicesLib
+
+[Guids]
+  gShellActHiiGuid             ## SOMETIMES_CONSUMES ## HII
+  gAgesaConfigDbPointerVariableGuid
+
+[Protocols]
+  gEfiShellDynamicCommandProtocolGuid
+  gEfiHiiPackageListProtocolGuid
+  gEfiShellParametersProtocolGuid
+  gEfiUnicodeCollation2ProtocolGuid
+
+[DEPEX]
+  TRUE

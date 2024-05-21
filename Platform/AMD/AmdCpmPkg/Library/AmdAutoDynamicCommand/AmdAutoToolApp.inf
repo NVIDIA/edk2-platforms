@@ -1,0 +1,50 @@
+## @file
+#
+#  Copyright (C) 2022-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdAutoToolApp
+  FILE_GUID                      = 470E1741-2DFE-43EF-861E-505CB3226DC0
+  MODULE_TYPE                    = UEFI_APPLICATION
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = ActCommandInitialize
+#
+#  This flag specifies whether HII resource section is generated into PE image.
+#
+  UEFI_HII_RESOURCE_SECTION      = TRUE
+
+[Sources.common]
+  AmdAutoToolApp.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  FileHandleLib
+  HiiLib
+  MemoryAllocationLib
+  UefiApplicationEntryPoint
+  UefiBootServicesTableLib
+  UefiHiiServicesLib
+  UefiLib
+  UefiRuntimeServicesTableLib
+
+[Protocols]
+  gEfiHiiPackageListProtocolGuid                 ## CONSUMES
+  gEfiShellParametersProtocolGuid
+  gEfiUnicodeCollation2ProtocolGuid
+
+[Guids]
+

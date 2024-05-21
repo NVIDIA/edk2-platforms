@@ -1,0 +1,26 @@
+## @file
+#
+#  Copyright (C) 2008-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = FchBaseLib
+  FILE_GUID                      = 4108287a-c864-4427-b2c3-bd0e91a83abd
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = FchBaseLib
+
+[Sources.common]
+  FchStallLib.c
+
+[Packages]
+  AgesaModulePkg/AgesaModuleFchPkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  PciSegmentLib
+

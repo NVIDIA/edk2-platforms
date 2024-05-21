@@ -1,0 +1,30 @@
+## @file
+#
+#  Copyright (C) 2008-2024 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdPspMboxLibV2
+  FILE_GUID                      = B9E57A31-CAB0-4CEE-9D50-9D43E2EEAA44
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPspMboxLibV2
+
+[Sources.common]
+  AmdPspMboxLibV2.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+
+[LibraryClasses]
+  PciLib
+  SmnAccessLib
+
+
+

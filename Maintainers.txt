@@ -86,8 +86,20 @@ M: Leif Lindholm <quic_llindhol@quicinc.com>
 AMD
 F: Platform/AMD
 M: Abner Chang <abner.chang@amd.com>
-M: Abdul Lateef Attar <abdattar@amd.com>
+M: Abdul Lateef Attar <AbdulLateef.Attar@amd.com>
+M: Paul Grimes <paul.grimes@amd.com>
+
+F: Platform/AMD/AgesaModulePkg
+F: Platform/AMD/AgesaPkg
+F: Platform/AMD/AmdCbsPkg
+M: Paul Grimes <paul.grimes@amd.com>
+R: Abdul Lateef Attar <AbdulLateef.Attar@amd.com>
+R: Abner Chang <abner.chang@amd.com>
+
+F: Platform/AMD/AmdCpmPkg
+M: Abdul Lateef Attar <AbdulLateef.Attar@amd.com>
 R: Paul Grimes <paul.grimes@amd.com>
+R: Abner Chang <abner.chang@amd.com>
 
 AMD Seattle
 F: Platform/AMD/OverdriveBoard/

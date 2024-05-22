@@ -7,18 +7,25 @@ booting certain AMD platforms. The definition of sub-folders is described in bel
 
 ## Term and Definitions
 
+* **AGESA**
+
+  AMD Generic Encapsulated Software Architecture that are executed as part of a
+  host platform BIOS.
+
 * **AMD Platform** (platform in short)
 
-  AMD platform refers to a platform that supports the particular AMD SoC (processor), such as AMD EPYC Milan and Genoa processors.
+  AMD platform refers to a platform that supports the particular AMD SoC (processor), such as
+  AMD EPYC Milan and Genoa processors.
 
 * **AMD Board** (board in short)
 
   AMD board is a generic terminology refers to a board that is designed based on a
   specific AMD SoC architecture (also referred as AMD platform). More than one boards
-  are possibly designed to support an AMD platform with different configuration, such as 1-processor socket or 2-processor sockets board.
+  are possibly designed to support an AMD platform with different configuration, such as
+  1-processor socket or 2-processor sockets board.
 
 * **AMD edk2 Platform Package** (platform package in short)
-  
+
   The folder has the AMD edk2 platform common modules.
 
 * **AMD edk2 Board Package** (board package in short)
@@ -28,29 +35,52 @@ booting certain AMD platforms. The definition of sub-folders is described in bel
 
 ## Package Definition
 
+* **AgesaModulePkg**
+
+  This package contains all of the private interfaces and build configuration files for the
+  AGESA support.
+
+* **AgesaPkg**
+
+  This package contains all of the public interfaces and build configuration files
+  for the AGESA support.
+
+* **AmdCbsPkg**
+
+  AMD Configurable BIOS Setting. Provides the edk2 formset following the UEFI HII
+  spec to configure BIOS settings.
+
+* **AmdCpmPkg**
+
+  AMD Common Platform Module software is a BIOS procedure library designed to aid
+  AMD customers to quickly implement AMD platform technology into their products.
+
 * **AmdPlatformPkg**
 
-  AMD platform edk2 package under this folder provides the common edk2 modules those
-  are leverage by platforms. Usually those modules have no dependencies with
-  particular platforms. The module under this scope can provides a common implementation
-  for all platforms, or it may just provide a framework but the differences of implementation could be configured through the PCDs declared in AmdPlatformPkg.dec, or
-  the board level library provided in the \<Board name\>Pkg.
+  AMD platform edk2 package under this folder provides the common edk2
+  modules that are leveraged by platforms. Usually those modules have no dependencies with
+  particular platforms. Modules under this scope can provide a common implementation
+  for all platforms, or may just provide a framework but the differences of implementation
+  could be configured through the PCDs declared in AmdPlatformPkg.dec, or the board level
+  library provided in the \<Board name\>Pkg.
 
 * **AmdMinBoardPkg**
 
-  This package provides the common edk2 modules those can be leverage across AMD boards those use MinPlatformPkg framework.
+  This package provides the common edk2 modules that can be leveraged across AMD boards using
+  the MinPlatform framework.
 
 * **\<SoC name\>Board**
 
-  This is the folder named by SoC and accommodate one or multiple board packages those
-  are designed base on the same SoC platform. <SoC name>Board folder may contain edk2
-  package meta files directly or the sub-folders named by \<Board name\>Pkg for a 
-  variety configurations of a platform.
+  This is the folder named by SoC and accommodates one or multiple board packages
+  that are designed based on the same SoC platform. <SoC name>Board folder may
+  contain edk2 package meta files directly or the sub-folders named by \<Board name\>Pkg for
+  a variety configurations of a platform.
 
 * **<Board name\>Pkg**
 
-  This is the folder that contains edk2 package meta files for a board which is designed base on a platform. Besides the edk2 meta files, <Board name\>Pkg may also provides
-  edk2 modules which are specifically to a board.
+  This is the folder that contains edk2 package meta files for a board which is designed base
+  on a platform. Besides the edk2 meta files, <Board name\>Pkg may also provides edk2 modules
+  which are specifically to a board.
 
   ```
   e.g. OverdriveBoard
@@ -63,6 +93,10 @@ booting certain AMD platforms. The definition of sub-folders is described in bel
 
   ```
   Platform/AMD
+            |----AgesaModulePkg
+            |----AgesaPkg
+            |----AmdCbsPkg
+            |----AmdCpmPkg
             |----AmdPlatformPkg
             |----AmdMinBoardPkg
             |----OverdriveBoard

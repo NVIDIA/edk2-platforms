@@ -4,6 +4,9 @@
 *
 * SPDX-License-Identifier: BSD-2-Clause-Patent
 *
+* Arm Neoverse N1 System Development Platform Technical Reference Manual
+* https://developer.arm.com/documentation/101489/0000/?lang=en
+*
 **/
 
 #ifndef NEOVERSEN1SOC_PLATFORM_H_
@@ -40,6 +43,10 @@
 // AXI Expansion peripherals
 #define NEOVERSEN1SOC_EXP_PERIPH_BASE0               0x1C000000
 #define NEOVERSEN1SOC_EXP_PERIPH_BASE0_SZ            0x1300000
+
+// SCP QSPI flash device
+#define NEOVERSEN1SOC_SCP_QSPI_AHB_BASE              0x18000000
+#define NEOVERSEN1SOC_SCP_QSPI_AHB_SZ                0x2000000
 
 /*
  * Platform information structure stored in Non-secure SRAM. Platform

@@ -14,7 +14,7 @@
 #include <NeoverseN1Soc.h>
 
 // The total number of descriptors, including the final "end-of-table" descriptor.
-#define MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS 19
+#define MAX_VIRTUAL_MEMORY_MAP_DESCRIPTORS 20
 
 /**
   Returns the Virtual Memory Map of the platform.
@@ -201,6 +201,12 @@ ArmPlatformGetVirtualMemoryMap (
   VirtualMemoryTable[++Index].PhysicalBase  = NEOVERSEN1SOC_EXP_PERIPH_BASE0;
   VirtualMemoryTable[Index].VirtualBase     = NEOVERSEN1SOC_EXP_PERIPH_BASE0;
   VirtualMemoryTable[Index].Length          = NEOVERSEN1SOC_EXP_PERIPH_BASE0_SZ;
+  VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
+
+  // SCP QSPI flash device
+  VirtualMemoryTable[++Index].PhysicalBase  = NEOVERSEN1SOC_SCP_QSPI_AHB_BASE;
+  VirtualMemoryTable[Index].VirtualBase     = NEOVERSEN1SOC_SCP_QSPI_AHB_BASE;
+  VirtualMemoryTable[Index].Length          = NEOVERSEN1SOC_SCP_QSPI_AHB_SZ;
   VirtualMemoryTable[Index].Attributes      = ARM_MEMORY_REGION_ATTRIBUTE_DEVICE;
 
   if (PlatInfo->MultichipMode == 1) {

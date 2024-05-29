@@ -342,6 +342,13 @@ NorFlashFvbInitialize (
   IN NOR_FLASH_INSTANCE  *Instance
   );
 
+VOID
+EFIAPI
+NorFlashVirtualNotifyEvent (
+  IN EFI_EVENT  Event,
+  IN VOID       *Context
+  );
+
 //
 // NorFlash.c
 //
@@ -410,13 +417,6 @@ NorFlashWriteSingleWord (
   IN NOR_FLASH_INSTANCE  *Instance,
   IN UINTN               WordAddress,
   IN UINT32              WriteData
-  );
-
-VOID
-EFIAPI
-NorFlashVirtualNotifyEvent (
-  IN EFI_EVENT  Event,
-  IN VOID       *Context
   );
 
 #endif /* __NOR_FLASH_H__ */

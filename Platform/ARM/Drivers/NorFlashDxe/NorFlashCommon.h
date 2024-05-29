@@ -19,6 +19,7 @@
 #include <Protocol/FirmwareVolumeBlock.h>
 
 #include <Library/DebugLib.h>
+#include <Library/NorFlashDeviceLib.h>
 #include <Library/NorFlashPlatformLib.h>
 #include <Library/UefiLib.h>
 #include <Library/UefiRuntimeLib.h>

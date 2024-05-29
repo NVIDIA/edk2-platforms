@@ -20,6 +20,7 @@
 
 #include <Library/DebugLib.h>
 #include <Library/IoLib.h>
+#include <Library/NorFlashDeviceLib.h>
 
 #define NOR_FLASH_ERASE_RETRY  10
 
@@ -40,7 +41,6 @@
 #define CREATE_NOR_ADDRESS(BaseAddr, OffsetAddr)       ((BaseAddr) + ((OffsetAddr) << 2))
 #define CREATE_DUAL_CMD(Cmd)                           ( ( Cmd << 16) | ( Cmd & LOW_16_BITS) )
 #define SEND_NOR_COMMAND(BaseAddr, Offset, Cmd)        MmioWrite32 (CREATE_NOR_ADDRESS(BaseAddr,Offset), CREATE_DUAL_CMD(Cmd))
-#define GET_NOR_BLOCK_ADDRESS(BaseAddr, Lba, LbaSize)  ( BaseAddr + (UINTN)((Lba) * LbaSize) )
 
 // Status Register Bits
 #define P30_SR_BIT_WRITE            (BIT7 << 16 | BIT7)
@@ -104,108 +104,5 @@
 // CONFIGURATION Commands
 #define P30_CMD_READ_CONFIGURATION_REGISTER_SETUP  0x0060
 #define P30_CMD_READ_CONFIGURATION_REGISTER        0x0003
-
-typedef struct _NOR_FLASH_INSTANCE NOR_FLASH_INSTANCE;
-
-#pragma pack (1)
-typedef struct {
-  VENDOR_DEVICE_PATH          Vendor;
-  UINT8                       Index;
-  EFI_DEVICE_PATH_PROTOCOL    End;
-} NOR_FLASH_DEVICE_PATH;
-#pragma pack ()
-
-struct _NOR_FLASH_INSTANCE {
-  UINT32                                 Signature;
-  EFI_HANDLE                             Handle;
-
-  UINTN                                  DeviceBaseAddress;
-  UINTN                                  RegionBaseAddress;
-  UINTN                                  Size;
-  EFI_LBA                                StartLba;
-
-  EFI_BLOCK_IO_PROTOCOL                  BlockIoProtocol;
-  EFI_BLOCK_IO_MEDIA                     Media;
-  EFI_DISK_IO_PROTOCOL                   DiskIoProtocol;
-
-  EFI_FIRMWARE_VOLUME_BLOCK2_PROTOCOL    FvbProtocol;
-  VOID                                   *ShadowBuffer;
-
-  NOR_FLASH_DEVICE_PATH                  DevicePath;
-};
-
-//
-// NorFlash.c
-//
-EFI_STATUS
-NorFlashWriteSingleBlock (
-  IN        NOR_FLASH_INSTANCE  *Instance,
-  IN        EFI_LBA             Lba,
-  IN        UINTN               Offset,
-  IN OUT    UINTN               *NumBytes,
-  IN        UINT8               *Buffer
-  );
-
-EFI_STATUS
-NorFlashWriteBlocks (
-  IN  NOR_FLASH_INSTANCE  *Instance,
-  IN  EFI_LBA             Lba,
-  IN  UINTN               BufferSizeInBytes,
-  IN  VOID                *Buffer
-  );
-
-EFI_STATUS
-NorFlashReadBlocks (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN EFI_LBA             Lba,
-  IN UINTN               BufferSizeInBytes,
-  OUT VOID               *Buffer
-  );
-
-EFI_STATUS
-NorFlashRead (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN EFI_LBA             Lba,
-  IN UINTN               Offset,
-  IN UINTN               BufferSizeInBytes,
-  OUT VOID               *Buffer
-  );
-
-EFI_STATUS
-NorFlashReset (
-  IN  NOR_FLASH_INSTANCE  *Instance
-  );
-
-EFI_STATUS
-NorFlashEraseSingleBlock (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN UINTN               BlockAddress
-  );
-
-EFI_STATUS
-NorFlashWriteFullBlock (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN EFI_LBA             Lba,
-  IN UINT32              *DataBuffer,
-  IN UINT32              BlockSizeInWords
-  );
-
-EFI_STATUS
-NorFlashUnlockAndEraseSingleBlock (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN UINTN               BlockAddress
-  );
-
-VOID
-EFIAPI
-NorFlashLock (
-  IN EFI_TPL  *OriginalTPL
-  );
-
-VOID
-EFIAPI
-NorFlashUnlock (
-  IN EFI_TPL OriginalTPL
-  );
 
 #endif /* __NOR_FLASH_H__ */

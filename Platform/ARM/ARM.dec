@@ -17,6 +17,7 @@
 
 [LibraryClasses]
   BdsLib|Include/Library/BdsLib.h
+  NorFlashDeviceLib|Include/Library/NorFlashDeviceLib.h
   NorFlashPlatformLib|Include/Library/NorFlashPlatformLib.h
 
 [Guids]

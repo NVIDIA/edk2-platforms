@@ -220,4 +220,30 @@ NorFlashWriteSingleWord (
   IN UINT32              WriteData
   );
 
+EFI_STATUS
+NorFlashWriteFullBlock (
+  IN NOR_FLASH_INSTANCE  *Instance,
+  IN EFI_LBA             Lba,
+  IN UINT32              *DataBuffer,
+  IN UINT32              BlockSizeInWords
+  );
+
+EFI_STATUS
+NorFlashUnlockAndEraseSingleBlock (
+  IN NOR_FLASH_INSTANCE  *Instance,
+  IN UINTN               BlockAddress
+  );
+
+VOID
+EFIAPI
+NorFlashLock (
+  IN EFI_TPL  *OriginalTPL
+  );
+
+VOID
+EFIAPI
+NorFlashUnlock (
+  IN EFI_TPL OriginalTPL
+  );
+
 #endif /* __NOR_FLASH_H__ */

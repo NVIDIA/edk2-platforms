@@ -32,20 +32,6 @@
 // NorFlashDxe.c
 //
 EFI_STATUS
-NorFlashWriteFullBlock (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN EFI_LBA             Lba,
-  IN UINT32              *DataBuffer,
-  IN UINT32              BlockSizeInWords
-  );
-
-EFI_STATUS
-NorFlashUnlockAndEraseSingleBlock (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN UINTN               BlockAddress
-  );
-
-EFI_STATUS
 NorFlashCreateInstance (
   IN UINTN                NorFlashDeviceBase,
   IN UINTN                NorFlashRegionBase,

@@ -1,0 +1,35 @@
+#/** @file
+#
+#  Component description file for P30NorFlashDeviceLib library
+#
+#  Copyright (c) 2011 - 2024, Arm Limited. All rights reserved.<BR>
+#  Copyright (c) 2020, Linaro, Ltd. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                = 0x00010005
+  BASE_NAME                  = P30NorFlashDeviceLib
+  FILE_GUID                  = ed172366-066b-4998-9b5e-ca7f385a1709
+  MODULE_TYPE                = DXE_DRIVER
+  VERSION_STRING             = 1.0
+  LIBRARY_CLASS              = NorFlashDeviceLib
+
+[Sources.common]
+  P30NorFlashDeviceLib.c
+  P30NorFlashDeviceLib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Platform/ARM/ARM.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+
+[Pcd.common]
+  gPlatformArmTokenSpaceGuid.PcdNorFlashCheckBlockLocked

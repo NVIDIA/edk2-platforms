@@ -236,4 +236,21 @@ NorFlashUnlock (
   IN EFI_TPL  OriginalTPL
   );
 
+/**
+  Read JEDEC ID of NOR flash device.
+
+  @param[in]     Instance               NOR flash Instance of variable store region.
+  @param[out]    JedecId                JEDEC ID of NOR flash device.
+                                        Maximum length of JedecId can be upto 6 bytes
+  @retval        EFI_SUCCESS            The write is completed.
+  @retval        EFI_UNSUPPORTED        JEDEC ID retrieval not implemented.
+  @retval        EFI_DEVICE_ERROR       Failed to fetch JEDEC ID.
+  @retval        EFI_INVALID_PARAMETER  Invalid parameters passed.
+**/
+EFI_STATUS
+NorFlashReadId (
+  IN  NOR_FLASH_INSTANCE  *Instance,
+  OUT UINT8               *JedecId  // Maximum length of JedecId can be upto 6 bytes.
+  );
+
 #endif /* NOR_FLASH_DEVICE_LIB_H_ */

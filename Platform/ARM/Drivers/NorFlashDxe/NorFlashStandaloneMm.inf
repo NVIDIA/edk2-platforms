@@ -37,6 +37,7 @@
   MemoryAllocationLib
   MmServicesTableLib
   NorFlashDeviceLib
+  NorFlashInfoLib
   NorFlashPlatformLib
   StandaloneMmDriverEntryPoint
 

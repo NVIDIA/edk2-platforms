@@ -10,6 +10,7 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/MmServicesTableLib.h>
+#include <Library/NorFlashInfoLib.h>
 
 #include "NorFlashCommon.h"
 
@@ -106,6 +107,8 @@ NorFlashCreateInstance (
 {
   EFI_STATUS          Status;
   NOR_FLASH_INSTANCE  *Instance;
+  NOR_FLASH_INFO      *FlashInfo;
+  UINT8               JedecId[6];
 
   ASSERT (NorFlashInstance != NULL);
 
@@ -131,6 +134,21 @@ NorFlashCreateInstance (
   if (Instance->ShadowBuffer == NULL) {
     Status = EFI_OUT_OF_RESOURCES;
     goto error_handler1;
+  }
+
+  Status = NorFlashReadId (Instance, JedecId);
+  if (EFI_ERROR (Status)) {
+    if (Status != EFI_UNSUPPORTED) {
+      goto error_handler2;
+    }
+  } else {
+    Status = NorFlashGetInfo (JedecId, &FlashInfo, FALSE);
+    if (EFI_ERROR (Status)) {
+      DEBUG ((DEBUG_WARN, "NorFlashCreateInstance: JedecID not supported\n"));
+    } else {
+      NorFlashPrintInfo (FlashInfo);
+      FreePool (FlashInfo);
+    }
   }
 
   if (SupportFvb) {

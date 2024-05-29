@@ -951,3 +951,21 @@ NorFlashReset (
   SEND_NOR_COMMAND (Instance->DeviceBaseAddress, 0, P30_CMD_READ_ARRAY);
   return EFI_SUCCESS;
 }
+
+/**
+  Read JEDEC ID of NOR flash device.
+
+  @param[in]     Instance               NOR flash Instance of variable store region.
+  @param[out]    JedecId                JEDEC ID of NOR flash device.
+                                        Maximum length of JedecId can be upto 6 bytes.
+
+  @retval        EFI_UNSUPPORTED        JEDEC ID retrieval not implemented.
+**/
+EFI_STATUS
+NorFlashReadId (
+  IN  NOR_FLASH_INSTANCE  *Instance,
+  OUT UINT8               *JedecId
+  )
+{
+  return EFI_UNSUPPORTED;
+}

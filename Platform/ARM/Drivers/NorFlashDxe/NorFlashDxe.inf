@@ -35,6 +35,7 @@
   HobLib
   IoLib
   NorFlashDeviceLib
+  NorFlashInfoLib
   NorFlashPlatformLib
   UefiBootServicesTableLib
   UefiDriverEntryPoint

@@ -34,6 +34,7 @@
   BasePathLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
   LcdHwLib|ArmPlatformPkg/Library/HdLcd/HdLcd.inf
   LcdPlatformLib|Platform/ARM/SgiPkg/Library/HdLcdArmSgiLib/HdLcdArmSgiLib.inf
+  NorFlashDeviceLib|Platform/ARM/Library/P30NorFlashDeviceLib/P30NorFlashDeviceLib.inf
   NorFlashPlatformLib|Platform/ARM/SgiPkg/Library/NorFlashLib/NorFlashLib.inf
   HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
   ResetSystemLib|ArmPkg/Library/ArmSmcPsciResetSystemLib/ArmSmcPsciResetSystemLib.inf

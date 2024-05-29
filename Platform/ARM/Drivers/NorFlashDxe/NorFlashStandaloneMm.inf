@@ -19,8 +19,6 @@
   ENTRY_POINT                    = NorFlashInitialise
 
 [Sources.common]
-  NorFlash.c
-  NorFlash.h
   NorFlashFvb.c
   NorFlashCommon.h
   NorFlashStandaloneMm.c
@@ -38,6 +36,7 @@
   IoLib
   MemoryAllocationLib
   MmServicesTableLib
+  NorFlashDeviceLib
   NorFlashPlatformLib
   StandaloneMmDriverEntryPoint
 
@@ -59,9 +58,6 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase64
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
-
-[FeaturePcd]
-  gPlatformArmTokenSpaceGuid.PcdNorFlashCheckBlockLocked
 
 [Depex]
   TRUE

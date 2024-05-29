@@ -9,7 +9,6 @@
 #include <Library/BaseMemoryLib.h>
 #include <Library/UefiBootServicesTableLib.h>
 
-#include "NorFlash.h"
 #include "NorFlashCommon.h"
 
 //

@@ -1,0 +1,32 @@
+#/** @file
+#
+#  Component description file for CadenceQspiNorFlashDeviceLib Library
+#
+#  Copyright (c) 2024, Arm Limited. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+#**/
+
+[Defines]
+  INF_VERSION                = 0x00010005
+  BASE_NAME                  = CadenceQspiNorFlashDeviceLib
+  FILE_GUID                  = ed172366-066b-4998-9b5e-ca7f385a170b
+  MODULE_TYPE                = DXE_RUNTIME_DRIVER
+  VERSION_STRING             = 1.0
+  LIBRARY_CLASS              = NorFlashDeviceLib
+
+[Sources.common]
+  CadenceQspiNorFlashDeviceLib.c
+  CadenceQspiNorFlashDeviceLib.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  Platform/ARM/ARM.dec
+
+[LibraryClasses]
+  BaseLib
+  BaseMemoryLib
+  DebugLib
+  IoLib
+  TimerLib

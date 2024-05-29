@@ -129,7 +129,8 @@ NorFlashCreateInstance (
 
   Instance->ShadowBuffer = AllocateRuntimePool (BlockSize);
   if (Instance->ShadowBuffer == NULL) {
-    return EFI_OUT_OF_RESOURCES;
+    Status = EFI_OUT_OF_RESOURCES;
+    goto error_handler1;
   }
 
   if (SupportFvb) {
@@ -142,16 +143,22 @@ NorFlashCreateInstance (
                       &Instance->FvbProtocol
                       );
     if (EFI_ERROR (Status)) {
-      FreePool (Instance);
-      return Status;
+      goto error_handler2;
     }
   } else {
     DEBUG ((DEBUG_ERROR, "standalone MM NOR Flash driver only support FVB.\n"));
-    FreePool (Instance);
-    return EFI_UNSUPPORTED;
+    Status = EFI_UNSUPPORTED;
+    goto error_handler2;
   }
 
   *NorFlashInstance = Instance;
+  return Status;
+
+error_handler2:
+  FreePool (Instance->ShadowBuffer);
+
+error_handler1:
+  FreePool (Instance);
   return Status;
 }
 

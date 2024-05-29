@@ -15,6 +15,7 @@
 #include <Library/DxeServicesTableLib.h>
 
 #include "NorFlash.h"
+#include "NorFlashCommon.h"
 
 STATIC EFI_EVENT  mNorFlashVirtualAddrChangeEvent;
 

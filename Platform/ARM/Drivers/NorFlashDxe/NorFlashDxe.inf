@@ -21,6 +21,7 @@
   NorFlash.h
   NorFlashBlockIoDxe.c
   NorFlashDxe.c
+  NorFlashCommon.h
   NorFlashFvb.c
 
 [Packages]

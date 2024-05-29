@@ -19,6 +19,7 @@
 #include <Guid/NvVarStoreFormatted.h>
 
 #include "NorFlash.h"
+#include "NorFlashCommon.h"
 
 extern UINTN  mFlashNvStorageVariableBase;
 ///

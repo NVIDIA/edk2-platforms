@@ -12,6 +12,7 @@
 #include <Library/MmServicesTableLib.h>
 
 #include "NorFlash.h"
+#include "NorFlashCommon.h"
 
 //
 // Global variable declarations

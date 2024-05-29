@@ -22,6 +22,7 @@
   NorFlash.c
   NorFlash.h
   NorFlashFvb.c
+  NorFlashCommon.h
   NorFlashStandaloneMm.c
 
 [Packages]

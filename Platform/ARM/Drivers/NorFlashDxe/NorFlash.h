@@ -135,14 +135,6 @@ struct _NOR_FLASH_INSTANCE {
 };
 
 EFI_STATUS
-NorFlashReadCfiData (
-  IN  UINTN   DeviceBaseAddress,
-  IN  UINTN   CFI_Offset,
-  IN  UINT32  NumberOfBytes,
-  OUT UINT32  *Data
-  );
-
-EFI_STATUS
 NorFlashWriteBuffer (
   IN NOR_FLASH_INSTANCE  *Instance,
   IN UINTN               TargetAddress,
@@ -185,15 +177,6 @@ NorFlashRead (
   IN UINTN               Offset,
   IN UINTN               BufferSizeInBytes,
   OUT VOID               *Buffer
-  );
-
-EFI_STATUS
-NorFlashWrite (
-  IN        NOR_FLASH_INSTANCE  *Instance,
-  IN        EFI_LBA             Lba,
-  IN        UINTN               Offset,
-  IN OUT    UINTN               *NumBytes,
-  IN        UINT8               *Buffer
   );
 
 EFI_STATUS

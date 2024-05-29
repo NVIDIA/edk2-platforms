@@ -161,11 +161,9 @@
   # ACPI Table Version
   gEfiMdeModulePkgTokenSpaceGuid.PcdAcpiExposedTableVersions|0x20
 
-  # Runtime Variable storage
-  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvStoreReserved|0
-  gEfiMdeModulePkgTokenSpaceGuid.PcdEmuVariableNvModeEnable|TRUE
-  gEfiMdeModulePkgTokenSpaceGuid.PcdMaxVariableSize|0x2000
-  gEfiMdeModulePkgTokenSpaceGuid.PcdMaxAuthVariableSize|0x2800
+  # NOR flash support
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase|0x18F00000
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize|0x00020000
 
 ################################################################################
 #
@@ -197,6 +195,16 @@
       gEfiMdePkgTokenSpaceGuid.PcdDebugPrintErrorLevel|0x8000000F
   }
 
+  # NOR flash support
+  Platform/ARM/Drivers/NorFlashDxe/NorFlashDxe.inf {
+    <LibraryClasses>
+      NorFlashDeviceLib|Platform/ARM/Library/CadenceQspiNorFlashDeviceLib/CadenceQspiNorFlashDeviceLib.inf
+      NorFlashPlatformLib|Silicon/ARM/NeoverseN1Soc/Library/NorFlashLib/NorFlashLib.inf
+      NorFlashInfoLib|EmbeddedPkg/Library/NorFlashInfoLib/NorFlashInfoLib.inf
+    <PcdsFixedAtBuild>
+      gPlatformArmTokenSpaceGuid.PcdNorFlashRegBaseAddress|0x1C0C0000
+  }
+
   # Architectural Protocols
   ArmPkg/Drivers/CpuDxe/CpuDxe.inf
   ArmPkg/Drivers/ArmGic/ArmGicDxe.inf
@@ -217,6 +225,7 @@
   MdeModulePkg/Universal/Variable/RuntimeDxe/VariableRuntimeDxe.inf {
     <LibraryClasses>
       NULL|MdeModulePkg/Library/VarCheckUefiLib/VarCheckUefiLib.inf
+      NULL|EmbeddedPkg/Library/NvVarStoreFormattedLib/NvVarStoreFormattedLib.inf
       BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
   }
 

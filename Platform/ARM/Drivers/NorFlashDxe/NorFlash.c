@@ -103,6 +103,7 @@ NorFlashUnlockSingleBlock (
   return EFI_SUCCESS;
 }
 
+STATIC
 EFI_STATUS
 NorFlashUnlockSingleBlockIfNecessary (
   IN NOR_FLASH_INSTANCE  *Instance,
@@ -175,6 +176,7 @@ NorFlashEraseSingleBlock (
   return Status;
 }
 
+STATIC
 EFI_STATUS
 NorFlashWriteSingleWord (
   IN NOR_FLASH_INSTANCE  *Instance,
@@ -245,6 +247,7 @@ NorFlashWriteSingleWord (
  * Therefore, it is a requirement to align buffer writes to 32-bit word boundaries.
  * i.e. the last 4 bits of the target start address must be zero: 0x......00
  */
+STATIC
 EFI_STATUS
 NorFlashWriteBuffer (
   IN NOR_FLASH_INSTANCE  *Instance,

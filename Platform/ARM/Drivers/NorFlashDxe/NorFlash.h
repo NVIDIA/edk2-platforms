@@ -134,14 +134,6 @@ struct _NOR_FLASH_INSTANCE {
   NOR_FLASH_DEVICE_PATH                  DevicePath;
 };
 
-EFI_STATUS
-NorFlashWriteBuffer (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN UINTN               TargetAddress,
-  IN UINTN               BufferSizeInBytes,
-  IN UINT32              *Buffer
-  );
-
 //
 // NorFlash.c
 //
@@ -188,19 +180,6 @@ EFI_STATUS
 NorFlashEraseSingleBlock (
   IN NOR_FLASH_INSTANCE  *Instance,
   IN UINTN               BlockAddress
-  );
-
-EFI_STATUS
-NorFlashUnlockSingleBlockIfNecessary (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN UINTN               BlockAddress
-  );
-
-EFI_STATUS
-NorFlashWriteSingleWord (
-  IN NOR_FLASH_INSTANCE  *Instance,
-  IN UINTN               WordAddress,
-  IN UINT32              WriteData
   );
 
 EFI_STATUS

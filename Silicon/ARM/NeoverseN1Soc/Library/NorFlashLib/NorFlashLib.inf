@@ -1,0 +1,35 @@
+## @file
+#  NOR flash lib for ARM Neoverse N1 platform.
+#
+#  Copyright (c) 2024, ARM Limited. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x0001001B
+  BASE_NAME                      = NorFlashNeoverseN1SocLib
+  FILE_GUID                      = 7006fcf1-a585-4272-92e3-b286b1dff5bb
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NorFlashPlatformLib
+
+[Sources.common]
+  NorFlashLib.c
+
+[Packages]
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  Platform/ARM/ARM.dec
+  Silicon/ARM/NeoverseN1Soc/NeoverseN1Soc.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+
+[FixedPcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingSize
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableSize

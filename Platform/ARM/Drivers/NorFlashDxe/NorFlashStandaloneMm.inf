@@ -59,5 +59,7 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
 
+  gPlatformArmTokenSpaceGuid.PcdNorFlashRegBaseAddress
+
 [Depex]
   TRUE

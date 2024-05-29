@@ -26,3 +26,6 @@
 
 [PcdsFeatureFlag.common]
   gPlatformArmTokenSpaceGuid.PcdNorFlashCheckBlockLocked|FALSE|BOOLEAN|0x0000001
+
+[PcdsFixedAtBuild.common]
+  gPlatformArmTokenSpaceGuid.PcdNorFlashRegBaseAddress|0x0|UINT32|0x00000002

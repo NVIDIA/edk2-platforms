@@ -1,6 +1,6 @@
 /** @file  NorFlashDxe.c
 
-  Copyright (c) 2011 - 2021, Arm Limited. All rights reserved.<BR>
+  Copyright (c) 2011 - 2024, Arm Limited. All rights reserved.<BR>
 
   SPDX-License-Identifier: BSD-2-Clause-Patent
 
@@ -30,6 +30,7 @@ NOR_FLASH_INSTANCE  mNorFlashInstanceTemplate = {
   NOR_FLASH_SIGNATURE, // Signature
   NULL,                // Handle ... NEED TO BE FILLED
 
+  0, // Optional HostControllerBaseAddress  ... NEED TO BE FILLED
   0, // DeviceBaseAddress ... NEED TO BE FILLED
   0, // RegionBaseAddress ... NEED TO BE FILLED
   0, // Size ... NEED TO BE FILLED
@@ -99,6 +100,7 @@ NOR_FLASH_INSTANCE  mNorFlashInstanceTemplate = {
 
 EFI_STATUS
 NorFlashCreateInstance (
+  IN UINTN                HostControllerBase,
   IN UINTN                NorFlashDeviceBase,
   IN UINTN                NorFlashRegionBase,
   IN UINTN                NorFlashSize,
@@ -118,9 +120,10 @@ NorFlashCreateInstance (
     return EFI_OUT_OF_RESOURCES;
   }
 
-  Instance->DeviceBaseAddress = NorFlashDeviceBase;
-  Instance->RegionBaseAddress = NorFlashRegionBase;
-  Instance->Size              = NorFlashSize;
+  Instance->HostControllerBaseAddress = HostControllerBase;
+  Instance->DeviceBaseAddress         = NorFlashDeviceBase;
+  Instance->RegionBaseAddress         = NorFlashRegionBase;
+  Instance->Size                      = NorFlashSize;
 
   Instance->BlockIoProtocol.Media = &Instance->Media;
   Instance->Media.MediaId         = Index;
@@ -184,6 +187,27 @@ NorFlashInitialise (
   UINT32                 Index;
   NOR_FLASH_DESCRIPTION  *NorFlashDevices;
   BOOLEAN                ContainVariableStorage;
+  EFI_PHYSICAL_ADDRESS   HostControllerBaseAddress;
+
+  // Host controller base address region if available
+  HostControllerBaseAddress = PcdGet32 (PcdNorFlashRegBaseAddress);
+
+  if (HostControllerBaseAddress != 0) {
+    Status = gDS->AddMemorySpace (
+                    EfiGcdMemoryTypeMemoryMappedIo,
+                    HostControllerBaseAddress,
+                    SIZE_4KB,
+                    EFI_MEMORY_UC | EFI_MEMORY_RUNTIME
+                    );
+    ASSERT_EFI_ERROR (Status);
+
+    Status = gDS->SetMemorySpaceAttributes (
+                    HostControllerBaseAddress,
+                    SIZE_4KB,
+                    EFI_MEMORY_UC | EFI_MEMORY_RUNTIME
+                    );
+    ASSERT_EFI_ERROR (Status);
+  }
 
   Status = NorFlashPlatformInitialization ();
   if (EFI_ERROR (Status)) {
@@ -215,6 +239,7 @@ NorFlashInitialise (
     }
 
     Status = NorFlashCreateInstance (
+               HostControllerBaseAddress,
                NorFlashDevices[Index].DeviceBaseAddress,
                NorFlashDevices[Index].RegionBaseAddress,
                NorFlashDevices[Index].Size,
@@ -368,6 +393,7 @@ NorFlashVirtualNotifyEvent (
   UINTN  Index;
 
   for (Index = 0; Index < mNorFlashDeviceCount; Index++) {
+    EfiConvertPointer (0x0, (VOID **)&mNorFlashInstances[Index]->HostControllerBaseAddress);
     EfiConvertPointer (0x0, (VOID **)&mNorFlashInstances[Index]->DeviceBaseAddress);
     EfiConvertPointer (0x0, (VOID **)&mNorFlashInstances[Index]->RegionBaseAddress);
 

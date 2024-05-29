@@ -1,6 +1,6 @@
 /** @file  NorFlashStandaloneMm.c
 
-  Copyright (c) 2011 - 2021, Arm Limited. All rights reserved.<BR>
+  Copyright (c) 2011 - 2024, Arm Limited. All rights reserved.<BR>
   Copyright (c) 2020, Linaro, Ltd. All rights reserved.<BR>
 
   SPDX-License-Identifier: BSD-2-Clause-Patent
@@ -24,6 +24,7 @@ NOR_FLASH_INSTANCE  mNorFlashInstanceTemplate = {
   NOR_FLASH_SIGNATURE, // Signature
   NULL,                // Handle ... NEED TO BE FILLED
 
+  0, // Optional HostControllerBaseAddress  ... NEED TO BE FILLED
   0, // DeviceBaseAddress ... NEED TO BE FILLED
   0, // RegionBaseAddress ... NEED TO BE FILLED
   0, // Size ... NEED TO BE FILLED
@@ -93,6 +94,7 @@ NOR_FLASH_INSTANCE  mNorFlashInstanceTemplate = {
 
 EFI_STATUS
 NorFlashCreateInstance (
+  IN UINTN                HostControllerBase,
   IN UINTN                NorFlashDeviceBase,
   IN UINTN                NorFlashRegionBase,
   IN UINTN                NorFlashSize,
@@ -112,9 +114,10 @@ NorFlashCreateInstance (
     return EFI_OUT_OF_RESOURCES;
   }
 
-  Instance->DeviceBaseAddress = NorFlashDeviceBase;
-  Instance->RegionBaseAddress = NorFlashRegionBase;
-  Instance->Size              = NorFlashSize;
+  Instance->HostControllerBaseAddress = HostControllerBase;
+  Instance->DeviceBaseAddress         = NorFlashDeviceBase;
+  Instance->RegionBaseAddress         = NorFlashRegionBase;
+  Instance->Size                      = NorFlashSize;
 
   Instance->BlockIoProtocol.Media = &Instance->Media;
   Instance->Media.MediaId         = Index;
@@ -194,6 +197,7 @@ NorFlashInitialise (
     }
 
     Status = NorFlashCreateInstance (
+               PcdGet32 (PcdNorFlashRegBaseAddress),
                NorFlashDevices[Index].DeviceBaseAddress,
                NorFlashDevices[Index].RegionBaseAddress,
                NorFlashDevices[Index].Size,

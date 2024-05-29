@@ -36,10 +36,13 @@ struct _NOR_FLASH_INSTANCE {
   UINT32                                 Signature; ///< NOR Flash instance signature.
   EFI_HANDLE                             Handle;    ///< NOR Flash instance handle.
 
-  UINTN                                  DeviceBaseAddress; ///< NOR Flash device base address.
-  UINTN                                  RegionBaseAddress; ///< NOR Flash region base address.
-  UINTN                                  Size;              ///< NOR Flash region size.
-  EFI_LBA                                StartLba;          ///< Region start LBA.
+  UINTN                                  HostControllerBaseAddress; ///< NOR Flash host controller base address.
+                                                                    ///< This field is optional if no host
+                                                                    ///< controller is present.
+  UINTN                                  DeviceBaseAddress;         ///< NOR Flash device base address.
+  UINTN                                  RegionBaseAddress;         ///< NOR Flash region base address.
+  UINTN                                  Size;                      ///< NOR Flash region size.
+  EFI_LBA                                StartLba;                  ///< Region start LBA.
 
   EFI_BLOCK_IO_PROTOCOL                  BlockIoProtocol; ///< Instance's Block IO protocol handle.
   EFI_BLOCK_IO_MEDIA                     Media;           ///< Instance's  Media information.

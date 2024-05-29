@@ -65,5 +65,8 @@
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase
   gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareSize
 
+[FixedPcd]
+  gPlatformArmTokenSpaceGuid.PcdNorFlashRegBaseAddress
+
 [Depex]
   gEfiCpuArchProtocolGuid

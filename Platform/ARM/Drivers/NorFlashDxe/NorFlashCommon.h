@@ -34,6 +34,7 @@
 //
 EFI_STATUS
 NorFlashCreateInstance (
+  IN UINTN                HostRegisterBase,
   IN UINTN                NorFlashDeviceBase,
   IN UINTN                NorFlashRegionBase,
   IN UINTN                NorFlashSize,

@@ -3,6 +3,7 @@
 #
 # Copyright (c) 2018 - 2021, Intel Corporation. All rights reserved.<BR>
 # Copyright (C) 2023 Advanced Micro Devices, Inc. All rights reserved.<BR>
+# SPDX-FileCopyrightText: Copyright (c) 2024 NVIDIA CORPORATION & AFFILIATES. All rights reserved.
 #
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 #
@@ -30,4 +31,4 @@
 [LibraryClasses]
   BaseMemoryLib
   DebugLib
-  IpmiLib
+  IpmiBaseLib

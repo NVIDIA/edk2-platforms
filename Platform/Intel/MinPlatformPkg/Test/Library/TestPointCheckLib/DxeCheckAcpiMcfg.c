@@ -1,6 +1,7 @@
 /** @file
 
 Copyright (c) 2017, Intel Corporation. All rights reserved.<BR>
+Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.<BR>
 SPDX-License-Identifier: BSD-2-Clause-Patent
 
 **/
@@ -77,7 +78,7 @@ CheckAcpiMcfg (
   Struct = (VOID *)(Mcfg + 1);
   for (Index = 0; Index < Count; Index++) {
     if (!IsMmioExit (Struct->BaseAddress, (Struct->EndBusNumber - Struct->StartBusNumber + 1) * SIZE_1MB, TRUE)) {
-      DEBUG ((DEBUG_ERROR, "MCFG resource (0x%x) is not reported correctly.\n", Struct->BaseAddress));
+      DEBUG ((DEBUG_ERROR, "MCFG resource (0x%lx) is not reported correctly.\n", Struct->BaseAddress));
       return EFI_NOT_STARTED;
     }
     Struct++;

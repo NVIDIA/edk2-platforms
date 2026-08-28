@@ -253,7 +253,10 @@ GeneratePageTableRegionMap (
   MemoryTable[Index].Length       = 0;
   MemoryTable[Index].Attributes   = (ARM_MEMORY_REGION_ATTRIBUTES)0;
 
-  WriteBackInvalidateDataCacheRange ((VOID *)FixedPcdGet64 (PcdFdBaseAddress), FixedPcdGet64 (PcdSystemMemoryUefiRegionSize));
+  WriteBackInvalidateDataCacheRange (
+    (VOID *)FixedPcdGet64 (PcdFdBaseAddress),
+    FixedPcdGet64 (PcdSystemMemoryUefiRegionSize)
+    );
   WriteBackInvalidateDataCacheRange ((VOID *)FixedPcdGet64 (PcdBootDtBase), FixedPcdGet64 (PcdBootDtSize));
 
   ArmDisableCachesAndMmu ();

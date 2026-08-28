@@ -34,8 +34,7 @@ STATIC BOOLEAN          mIsMemMapHighNoMap  = FALSE;
   @return A pointer to the allocated buffer or NULL if allocation fails.
 
 **/
-VOID*
-EFIAPI
+STATIC VOID*
 AllocateZeroPoolNoFree (
   IN UINTN  AllocationSize
   )
@@ -148,7 +147,7 @@ GetConfigurationMemMapBounds (
   @retval  EFI_SUCCESS  Non-FD regions added successfully.
 
 **/
-EFI_STATUS
+STATIC EFI_STATUS
 AddNonFdRegions (
   UINTN            EntryCount,
   MEM_REGION_INFO  *EntryTable
@@ -195,7 +194,7 @@ AddNonFdRegions (
   @retval  EFI_NOT_FOUND      Region not found (may be acceptable).
 
 **/
-EFI_STATUS
+STATIC EFI_STATUS
 AddNonFdRegionRemainder (
   VOID
   )
@@ -254,7 +253,7 @@ AddNonFdRegionRemainder (
   @retval  EFI_LOAD_ERROR  Error occurred during addition.
 
 **/
-EFI_STATUS
+STATIC EFI_STATUS
 AddFdRegionRemainder (
   VOID
   )
@@ -314,7 +313,7 @@ AddFdRegionRemainder (
   @retval  Other        Error occurred during update.
 
 **/
-STATIC EFI_STATUS EFIAPI
+STATIC EFI_STATUS
 UpdateDynamicMemoryRegions (
   VOID
   )
@@ -384,6 +383,7 @@ UpdateDynamicMemoryRegions (
 
 **/
 EFI_STATUS
+EFIAPI
 AddUpperMemoryFromRamPartitions (
   VOID
   )
@@ -657,7 +657,8 @@ LoadStaticPlatformCfg (
   @retval  EFI_INVALID_PARAMETER   Invalid parameter.
 
 **/
-EFI_STATUS EFIAPI
+EFI_STATUS
+EFIAPI
 GetMemRegionCfgInfo (
   MEM_REGION_INFO  **MemoryRegions,
   UINTN            *NumMemoryRegions
@@ -683,7 +684,8 @@ GetMemRegionCfgInfo (
   @retval  EFI_INVALID_PARAMETER   Overlapping regions found.
 
 **/
-EFI_STATUS EFIAPI
+EFI_STATUS
+EFIAPI
 ValidateParsedMemoryRegions (
   VOID
   )

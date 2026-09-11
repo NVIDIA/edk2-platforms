@@ -1,0 +1,26 @@
+## @file
+#  This is the module used to consume dependency on AmdCpmGpioInitPeim.
+#  This ensures Tcg2ConfigPei dispatches only after GPIO initialization is
+#  complete and TPM MMIO at 0xFED40000 is accessible.
+#  Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdCpmGpioInitFinishedDepexLib
+  FILE_GUID                      = 3B7A5F21-9C4D-4E8A-B1F6-2A3C8D7E0F94
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdCpmGpioInitFinishedDepexLib
+
+[Sources]
+  AmdCpmGpioInitFinishedDepexLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+
+[Depex]
+  gAmdCpmGpioInitFinishedPpiGuid

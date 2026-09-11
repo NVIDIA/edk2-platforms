@@ -127,6 +127,7 @@
 
 [LibraryClasses.Common.DXE_DRIVER]
   BootLogoLib|MdeModulePkg/Library/BootLogoLib/BootLogoLib.inf
+  HstiLib|MdePkg/Library/DxeHstiLib/DxeHstiLib.inf
   MemoryAllocationLib|MdePkg/Library/UefiMemoryAllocationLib/UefiMemoryAllocationLib.inf
   Tcg2PhysicalPresenceLib|SecurityPkg/Library/DxeTcg2PhysicalPresenceLib/DxeTcg2PhysicalPresenceLib.inf
   Tcg2PpVendorLib|SecurityPkg/Library/Tcg2PpVendorLibNull/Tcg2PpVendorLibNull.inf

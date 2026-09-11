@@ -1,0 +1,42 @@
+## @file
+#  This driver provides example of HSTI IBV table.
+#
+#  Copyright (C) 2022 - 2024, Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformHstiDxe
+  FILE_GUID                      = B42E97CF-B811-4A09-9810-FEE8F53A561E
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformHstiDxeEntryPoint
+
+[Sources]
+  PlatformHstiDxe.c
+  PlatformHstiDxe.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaPkg/AgesaPkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  MemoryAllocationLib
+  BaseMemoryLib
+  BaseLib
+  DxeServicesTableLib
+  DebugLib
+  HstiLib
+  PcdLib
+
+[Depex]
+  TRUE
+

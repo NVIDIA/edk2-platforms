@@ -25,6 +25,7 @@
 
 # Include AGESA module for edk2-platforms
 !include AgesaModulePkg/AgesaEdk2PlatformPkg.inc.dsc
+!include AmdPlatformPkg/AmdPlatformPkg.dsc.inc
 
 [LibraryClasses.Common]
   #
@@ -104,6 +105,10 @@
   FchEspiCmdLib|AgesaModulePkg/Library/FchEspiCmdLib/FchEspiCmdLib.inf
 
 [LibraryClasses.common.PEIM]
+  HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
+  MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
+  PeiServicesLib|MdePkg/Library/PeiServicesLib/PeiServicesLib.inf
+  PeiServicesTablePointerLib|MdePkg/Library/PeiServicesTablePointerLib/PeiServicesTablePointerLib.inf
   PeiTcg2PhysicalPresenceLib|SecurityPkg/Library/PeiTcg2PhysicalPresenceLib/PeiTcg2PhysicalPresenceLib.inf
 
 [LibraryClasses.common.DXE_CORE, LibraryClasses.common.DXE_SMM_DRIVER, LibraryClasses.common.SMM_CORE, LibraryClasses.common.DXE_DRIVER, LibraryClasses.common.DXE_RUNTIME_DRIVER, LibraryClasses.common.UEFI_DRIVER, LibraryClasses.common.UEFI_APPLICATION]
@@ -132,6 +137,7 @@
 
 [Components]
   AmdPlatformPkg/Library/BaseAlwaysFalseDepexLib/BaseAlwaysFalseDepexLib.inf
+  AmdPlatformPkg/Library/CcxTscTimerLib/BaseTscTimerLib.inf
   AmdPlatformPkg/Library/DxePlatformSocLib/DxePlatformSocLibNull.inf
   AmdPlatformPkg/Library/SimulatorSerialPortLibPort80/SimulatorSerialPortLibPort80.inf
   AmdPlatformPkg/Universal/SecureBoot/SecureBootDefaultKeysInit/SecureBootDefaultKeysInit.inf
@@ -145,7 +151,11 @@
   AgesaModulePkg/Nbio/Library/CommonDxe/NbioCommonDxeLib.inf
   AgesaModulePkg/Library/PcieConfigLib/PcieConfigLib.inf
 
+[Components.IA32]
+  AmdPlatformPkg/Library/CcxTscTimerLib/PeiTscTimerLib.inf
+
 [Components.X64]
+  AmdPlatformPkg/Library/CcxTscTimerLib/DxeTscTimerLib.inf
   AmdPlatformPkg/Library/SpiHcPlatformLib/SpiHcPlatformLibDxe.inf
   AmdPlatformPkg/Library/SpiHcPlatformLib/SpiHcPlatformLibSmm.inf
   AmdPlatformPkg/Universal/Spi/EspiNorFlash/EspiNorFlashSmm.inf

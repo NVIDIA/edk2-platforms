@@ -1,0 +1,54 @@
+## @file
+#  Platform-specific library for LocalApicTimerHpetSyncLib.
+#  This library provides functionality to synchronize
+#  the Local APIC Timer with the HPET timer driver.
+#  Ensures that either the HPET or Local APIC Timer is enabled on the platform,
+#  with a preference for the HPET.
+#
+#  usage:
+#   Include this library in the platform DSC file like below
+#   OvmfPkg/LocalApicTimerDxe/LocalApicTimerDxe.inf {
+#     <LibraryClasses>
+#       NestedInterruptTplLib|OvmfPkg/Library/NestedInterruptTplLib/NestedInterruptTplLib.inf
+#       NULL|AmdPlatformPkg/Library/LocalApicTimerHpetSyncLib/LocalApicTimerHpetSyncLib.inf
+#   }
+#
+#  Copyright (C) 2025 Advanced Micro Devices, Inc. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 1.30
+  BASE_NAME                      = LocalApicTimerHpetSyncLib
+  MODULE_UNI_FILE                = LocalApicTimerHpetSyncLib.uni
+  FILE_GUID                      = DF317A4B-8E20-4301-812E-058033F77F99
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = NULL|DXE_DRIVER
+  CONSTRUCTOR                    = LocalApicTimerHpetSyncLibConstructor
+  DESTRUCTOR                     = LocalApicTimerHpetSyncLibDestructor
+#
+#  VALID_ARCHITECTURES           = X64
+#
+
+[Sources]
+  LocalApicTimerHpetSyncLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  PcAtChipsetPkg/PcAtChipsetPkg.dec
+
+[LibraryClasses]
+  DebugLib
+  IoLib
+  BaseMemoryLib
+  UefiDriverEntryPoint
+  PcdLib
+
+[Pcd]
+  gPcAtChipsetPkgTokenSpaceGuid.PcdHpetBaseAddress          ## CONSUMES
+
+[Depex]
+  TRUE

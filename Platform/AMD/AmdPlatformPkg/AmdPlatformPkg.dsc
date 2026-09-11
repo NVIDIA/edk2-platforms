@@ -156,6 +156,7 @@
 
 [Components.X64]
   AmdPlatformPkg/Library/CcxTscTimerLib/DxeTscTimerLib.inf
+  AmdPlatformPkg/Library/LocalApicTimerHpetSyncLib/LocalApicTimerHpetSyncLib.inf
   AmdPlatformPkg/Library/SpiHcPlatformLib/SpiHcPlatformLibDxe.inf
   AmdPlatformPkg/Library/SpiHcPlatformLib/SpiHcPlatformLibSmm.inf
   AmdPlatformPkg/Universal/Spi/EspiNorFlash/EspiNorFlashSmm.inf

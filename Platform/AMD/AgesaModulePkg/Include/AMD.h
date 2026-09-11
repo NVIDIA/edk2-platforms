@@ -88,4 +88,21 @@ typedef struct {
   OUT UINT32    ECX_Reg;                          ///< CPUID instruction result in ECX
   OUT UINT32    EDX_Reg;                          ///< CPUID instruction result in EDX
 } CPUID_DATA;
+
+#ifndef AMD_ACCESS_WIDTH_DEFINITION_
+#define AMD_ACCESS_WIDTH_DEFINITION_
+/// These width descriptors are used by the library function, and others, to specify the data size
+typedef enum ACCESS_WIDTH {
+  AccessWidthNone = 0,                                      ///< dummy access width
+  AccessWidth8    = 1,                                      ///< Access width is 8 bits.
+  AccessWidth16,                                            ///< Access width is 16 bits.
+  AccessWidth32,                                            ///< Access width is 32 bits.
+  AccessWidth64,                                            ///< Access width is 64 bits.
+
+  AccessS3SaveWidth8 = 0x81,                                ///< Save 8 bits data.
+  AccessS3SaveWidth16,                                      ///< Save 16 bits data.
+  AccessS3SaveWidth32,                                      ///< Save 32 bits data.
+  AccessS3SaveWidth64,                                      ///< Save 64 bits data.
+} ACCESS_WIDTH;
+#endif // AMD_ACCESS_WIDTH_DEFINITION_
 #endif // AMD_H_

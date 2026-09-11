@@ -103,6 +103,7 @@
   PcieConfigLib|AgesaModulePkg/Library/PcieConfigLib/PcieConfigLib.inf
 
   FchEspiCmdLib|AgesaModulePkg/Library/FchEspiCmdLib/FchEspiCmdLib.inf
+  AmdPostCodeLib|AmdPlatformPkg/Library/AmdPostCodeLibNull/AmdPostCodeLibNull.inf
 
 [LibraryClasses.common.PEIM]
   HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
@@ -138,6 +139,7 @@
 [Components]
   AmdPlatformPkg/Library/BaseAlwaysFalseDepexLib/BaseAlwaysFalseDepexLib.inf
   AmdPlatformPkg/Library/CcxTscTimerLib/BaseTscTimerLib.inf
+  AmdPlatformPkg/Library/AmdPostCodeLibNull/AmdPostCodeLibNull.inf
   AmdPlatformPkg/Library/DxePlatformSocLib/DxePlatformSocLibNull.inf
   AmdPlatformPkg/Library/SimulatorSerialPortLibPort80/SimulatorSerialPortLibPort80.inf
   AmdPlatformPkg/Universal/SecureBoot/SecureBootDefaultKeysInit/SecureBootDefaultKeysInit.inf

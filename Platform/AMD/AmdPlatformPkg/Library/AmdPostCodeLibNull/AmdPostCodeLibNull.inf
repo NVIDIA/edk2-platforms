@@ -1,0 +1,22 @@
+## @file
+#  AMD Post Code NULL Instance Library Module
+#
+#  Copyright (C) 2024, Advanced Micro Devices, Inc. All rights reserved
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+[Defines]
+  INF_VERSION                    = 0x00010006
+  BASE_NAME                      = AmdPostCodeLibNull
+  FILE_GUID                      = EDAC8724-4466-426A-8054-5FA0FAE13E28
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPostCodeLib
+
+[Packages]
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  MdePkg/MdePkg.dec
+
+[Sources.common]
+  AmdPostCodeLib.c
+

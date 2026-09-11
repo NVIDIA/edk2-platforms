@@ -39,5 +39,6 @@
 [LibraryClasses.Common.SMM_CORE]
 
 [Components.IA32]
+  AmdPlatformPkg/Universal/Psp/PspPreTcgEventLogPei/PspPreTcgEventLogPei.inf
 
 [Components.X64]

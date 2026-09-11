@@ -1,0 +1,54 @@
+## @file
+#  PspPreTcgEventLogPei driver.
+#
+#  Retrieves PSP early-boot TPM measurements via the AmdPspDtpmPpi and deposits
+#  them as gTcgEventEntryHobGuid / gTcgEvent2EntryHobGuid HOBs. Tcg2Dxe's
+#  SetupEventLog() replays these HOBs automatically. No modification to
+#  SecurityPkg/Tcg/Tcg2Dxe is required.
+#
+#  Copyright (C) 2026, Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010017
+  BASE_NAME                      = PspPreTcgEventLogPei
+  FILE_GUID                      = CDF4EE47-CB90-42F4-827A-EE787166929C
+  VERSION_STRING                 = 1.0
+  MODULE_TYPE                    = PEIM
+  ENTRY_POINT                    = PspPreTcgEventLogPeiEntry
+
+[Sources]
+  PspPreTcgEventLogPei.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  SecurityPkg/SecurityPkg.dec
+  AgesaPkg/AgesaPkg.dec
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  AgesaModulePkg/AgesaModulePspPkg.dec
+  AmdPlatformPkg/AmdPlatformPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  BaseMemoryLib
+  HobLib
+  DebugLib
+  PcdLib
+  Tpm2CommandLib
+
+[Guids]
+  gTcgEventEntryHobGuid    ## PRODUCES
+  gTcgEvent2EntryHobGuid   ## PRODUCES
+
+[Ppis]
+  gAmdPspDtpmPpiGuid                  ## CONSUMES
+  gAmdPspPreTcgEventLogDonePpiGuid    ## PRODUCES
+
+[Pcd]
+  gEfiSecurityPkgTokenSpaceGuid.PcdTpm2HashMask   ## CONSUMES
+
+[Depex]
+  gAmdPspDtpmPpiGuid

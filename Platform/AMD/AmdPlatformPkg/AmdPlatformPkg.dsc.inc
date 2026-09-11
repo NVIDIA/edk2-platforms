@@ -46,3 +46,4 @@
 
 [Components.X64]
   AmdPlatformPkg/Universal/Pci/PciLegacy/PciLegacy.inf
+  AmdPlatformPkg/Universal/PlatformCipherDxe/PlatformCipherDxe.inf

@@ -1,0 +1,37 @@
+## @file
+#  PLatform TLS Cipher suites driver
+#
+#  Copyright (C) 2023 Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PlatformCipherDxe
+  FILE_GUID                      = A19502DD-3808-4D68-A55A-25424EB35410
+  MODULE_TYPE                    = UEFI_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PlatformCipherEntryPoint
+
+[Sources]
+  PlatformCipherDxe.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  NetworkPkg/NetworkPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  MemoryAllocationLib
+  UefiDriverEntryPoint
+  UefiRuntimeServicesTableLib
+
+[Guids]
+  gEdkiiHttpTlsCipherListGuid
+
+[Depex]
+  TRUE

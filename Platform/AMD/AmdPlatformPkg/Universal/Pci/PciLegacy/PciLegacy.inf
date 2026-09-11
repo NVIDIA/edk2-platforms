@@ -1,0 +1,35 @@
+## @file
+#  PCI Legacy DXE Driver.
+#
+#  Copyright (C) 2020 - 2024, Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = PciLegacy
+  FILE_GUID                      = 667c65fd-f778-44eb-abbe-a5497af8a85f
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = PciLegacyEntry
+
+[Sources]
+  PciLegacy.c
+  PciLegacy.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdPlatformPkg/AmdPlatformPkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiBootServicesTableLib
+  DebugLib
+  UefiDriverEntryPoint
+  DxeServicesTableLib
+  IoLib
+
+[Depex]
+  TRUE

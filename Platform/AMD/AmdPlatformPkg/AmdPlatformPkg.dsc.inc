@@ -45,3 +45,4 @@
   AmdPlatformPkg/Universal/BoardIdValidatePei/BoardIdValidatePei.inf
 
 [Components.X64]
+  AmdPlatformPkg/Universal/Pci/PciLegacy/PciLegacy.inf

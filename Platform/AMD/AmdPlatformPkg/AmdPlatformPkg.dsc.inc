@@ -20,6 +20,7 @@
   TimerLib|AmdPlatformPkg/Library/CcxTscTimerLib/DxeTscTimerLib.inf
 
 [LibraryClasses.Common.DXE_DRIVER]
+  RedfishPlatformCredentialLib|AmdPlatformPkg/Library/PlatformRedfishCredentialLib/PlatformRedfishCredentialLib.inf
 
 [LibraryClasses.Common.DXE_SMM_DRIVER]
 

@@ -46,5 +46,6 @@
 
 [Components.X64]
   AmdPlatformPkg/Universal/Pci/PciLegacy/PciLegacy.inf
+  AmdPlatformPkg/Universal/Pci/PciHotPlug/PciHotPlugInit.inf
   AmdPlatformPkg/Universal/PlatformCipherDxe/PlatformCipherDxe.inf
   AmdPlatformPkg/Universal/Hsti/PlatformHstiDxe/PlatformHstiDxe.inf

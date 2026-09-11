@@ -105,6 +105,12 @@
   }
 
   #
+  # PCIe hot-plug resource padding PCDs (used by PciHotPlugInit)
+  gAmdPlatformPkgTokenSpaceGuid.PcdPciHotPlugResourcePadIo|0x00001000|UINT32|0x20000000
+  gAmdPlatformPkgTokenSpaceGuid.PcdPciHotPlugResourcePadPMem|0x00200000|UINT32|0x20000001
+  gAmdPlatformPkgTokenSpaceGuid.PcdPciHotPlugResourcePadMem|0x00100000|UINT32|0x20000002
+  gAmdPlatformPkgTokenSpaceGuid.PcdPciHotPlugResourcePadBus|2|UINT8|0x20000003
+
   # NV Store restore-default PCDs (used by RestoreDefaultPei)
   #
   gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableDefaultBase|0x00000000|UINT32|0x50000020

@@ -36,4 +36,5 @@
 
 [PcdsDynamic]
   gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdAmdS3LibTableSize|0x4000|UINT64|0x00027003
+  gEfiAmdAgesaModulePkgTokenSpaceGuid.PcdValLoopbackMode|0|UINT32|0x00041608
 

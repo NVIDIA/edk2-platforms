@@ -1,0 +1,50 @@
+## @file
+#  Driver to restore default status in PEI phase for NV.
+#
+#  Copyright (C) 2023 - 2024, Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010029
+  BASE_NAME                      = RestoreDefault
+  MODULE_UNI_FILE                = RestoreDefault.uni
+  FILE_GUID                      = 66A08851-EAD3-4665-BE37-1CCB3E1CCAB1
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  PI_SPECIFICATION_VERSION       = 0x0001000A
+  ENTRY_POINT                    = RestoreDefault
+
+#
+#  VALID_ARCHITECTURES           = IA32 X86
+#
+
+[Sources]
+  RestoreDefault.c
+  Cmos.c
+  Cmos.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  AmdPlatformPkg/AmdPlatformPkg.dec
+
+[LibraryClasses]
+  PeimEntryPoint
+  DebugLib
+  IoLib
+  PcdLib
+
+[FixedPcd]
+  gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableDefaultBase
+  gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariablePrimaryOffset
+  gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableDefaultOffset
+
+[Pcd]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase64
+
+[Depex]
+  TRUE

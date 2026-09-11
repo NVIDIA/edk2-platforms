@@ -1,0 +1,13 @@
+/** @file
+  String resources file for NV restore driver in PEI phase.
+
+  Copyright (C) 2023 - 2024, Advanced Micro Devices, Inc. All rights reserved.<BR>
+
+  SPDX-License-Identifier: BSD-2-Clause-Patent
+
+**/
+
+#string STR_MODULE_ABSTRACT             #language en-US "Restore system defaults"
+
+#string STR_MODULE_DESCRIPTION          #language en-US "This driver initiates restore of the system to factory default."
+

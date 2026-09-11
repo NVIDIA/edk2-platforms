@@ -40,5 +40,6 @@
 
 [Components.IA32]
   AmdPlatformPkg/Universal/Psp/PspPreTcgEventLogPei/PspPreTcgEventLogPei.inf
+  AmdPlatformPkg/Universal/RestoreDefaultPei/RestoreDefault.inf
 
 [Components.X64]

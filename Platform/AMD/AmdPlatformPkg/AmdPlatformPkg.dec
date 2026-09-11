@@ -90,6 +90,13 @@
   }
 
   #
+  # NV Store restore-default PCDs (used by RestoreDefaultPei)
+  #
+  gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableDefaultBase|0x00000000|UINT32|0x50000020
+  gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariablePrimaryOffset|0x00000000|UINT32|0x50000010
+  gAmdPlatformPkgTokenSpaceGuid.PcdFlashNvStorageVariableDefaultOffset|0x00000000|UINT32|0x50000040
+
+  #
   # SPI PCDs
   #
   gAmdPlatformPkgTokenSpaceGuid.PcdAmdSpiRetryCount|0xFFFFFFFF|UINT32|0x00020006

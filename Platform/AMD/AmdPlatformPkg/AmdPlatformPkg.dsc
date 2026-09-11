@@ -108,6 +108,7 @@
 [LibraryClasses.common.PEIM]
   HobLib|MdePkg/Library/PeiHobLib/PeiHobLib.inf
   MemoryAllocationLib|MdePkg/Library/PeiMemoryAllocationLib/PeiMemoryAllocationLib.inf
+  PcdLib|MdePkg/Library/PeiPcdLib/PeiPcdLib.inf
   PeimEntryPoint|MdePkg/Library/PeimEntryPoint/PeimEntryPoint.inf
   PeiServicesLib|MdePkg/Library/PeiServicesLib/PeiServicesLib.inf
   PeiServicesTablePointerLib|MdePkg/Library/PeiServicesTablePointerLib/PeiServicesTablePointerLib.inf
@@ -159,6 +160,7 @@
   AgesaModulePkg/Library/PcieConfigLib/PcieConfigLib.inf
 
 [Components.IA32]
+  MdeModulePkg/Universal/PCD/Pei/Pcd.inf
   AmdPlatformPkg/Library/CcxTscTimerLib/PeiTscTimerLib.inf
 
 [Components.X64]
@@ -177,6 +179,10 @@
   AmdPlatformPkg/Universal/Spi/BoardSpiBus/BoardSpiBusSmm.inf
   AmdPlatformPkg/Universal/Spi/BoardSpiConfig/BoardSpiConfigDxe.inf
   AmdPlatformPkg/Universal/Spi/BoardSpiConfig/BoardSpiConfigSmm.inf
+
+[PcdsDynamicDefault.common]
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase|0x00000000
+  gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase64|0x00000000
 
 [BuildOptions]
   GCC:*_*_*_CC_FLAGS     = -D DISABLE_NEW_DEPRECATED_INTERFACES

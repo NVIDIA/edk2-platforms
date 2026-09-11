@@ -7,9 +7,19 @@
 # SPDX-License-Identifier: BSD-2-Clause-Patent
 ##
 
+!ifndef SIMNOW_PORT80_DEBUG
+  DEFINE SIMNOW_PORT80_DEBUG = FALSE
+!endif
+!ifndef SIMNOW_SUPPORT
+  DEFINE SIMNOW_SUPPORT = FALSE
+!endif
 
 [LibraryClasses.Common]
   TimerLib|AmdPlatformPkg/Library/CcxTscTimerLib/BaseTscTimerLib.inf
+  AmdPostCodeLib|AmdPlatformPkg/Library/AmdPostCodeLibNull/AmdPostCodeLibNull.inf
+  !if $(SIMNOW_PORT80_DEBUG) == TRUE AND $(SIMNOW_SUPPORT) == TRUE
+    SerialPortLib|AmdPlatformPkg/Library/EmulatorSerialPort80RedirectLib/EmulatorSerialPort80Redirect.inf
+  !endif
 
 [LibraryClasses.Common.PEIM, LibraryClasses.Common.PEI_CORE]
   TimerLib|AmdPlatformPkg/Library/CcxTscTimerLib/PeiTscTimerLib.inf

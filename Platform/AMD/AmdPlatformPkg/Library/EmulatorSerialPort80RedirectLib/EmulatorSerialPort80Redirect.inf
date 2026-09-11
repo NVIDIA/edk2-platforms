@@ -1,0 +1,32 @@
+## @file
+#  Emulator port80 redirect instance of serial port library functions.
+#
+#  Copyright (C) 2024 Advanced Micro Devices, Inc. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = EmulatorSerialPortLibPort80Redirect
+  FILE_GUID                      = 4020D5D4-37D5-4884-B27A-8195A37E0230
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = SerialPortLib
+
+#
+#  VALID_ARCHITECTURES           = IA32 X64
+#
+
+[Sources]
+  EmulatorSerialPort80Redirect.c
+
+[Packages]
+  AgesaModulePkg/AgesaCommonModulePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  AmdPostCodeLib
+

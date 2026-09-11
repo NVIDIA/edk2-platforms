@@ -1,0 +1,43 @@
+## @file
+#  Board identification DXE driver
+#
+#  Copyright (C) 2015 - 2024 Advanced Micro Devices, Inc. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdBoardIdDxe
+  FILE_GUID                      = 9DCFBC34-68E4-4366-814B-1850D466B615
+  MODULE_TYPE                    = DXE_DRIVER
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = AmdBoardIdDxeInit
+
+
+[Sources.common]
+  AmdBoardIdDxe.c
+  AmdBoardIdDxe.h
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  DebugLib
+  HobLib
+
+[Guids]
+  gAmdBoardIdHobGuid
+
+[Protocols]
+  gAmdBoardIdProtocolGuid
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdPlatformPkg/AmdPlatformPkg.dec
+
+[Depex]
+  gAmdEnvRealHWProtocolGuid
+ 
+

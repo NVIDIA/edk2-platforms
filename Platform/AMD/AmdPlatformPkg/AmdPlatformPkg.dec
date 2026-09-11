@@ -59,6 +59,15 @@
   gAmdPlatformPkgTokenSpaceGuid.PcdAmdDisplayLogoEventGuid|{0xdc, 0xd5, 0xb3, 0x8e, 0xe7, 0xf4, 0x57, 0x4b, 0xa9, 0xe7, 0x27, 0x39, 0x10, 0xf2, 0x18, 0x9f}|VOID*|0x00010001
 
 [PcdsFixedAtBuild]
+  ## Board ID to board-name mapping table used by BoardIdValidatePei.
+  gAmdPlatformPkgTokenSpaceGuid.PcdPlatformBoardIdNameTable|{0x0}|PLATFORM_BOARD_ID_NAME_TABLE|0x00020026 {
+  <HeaderFiles>
+    Pcd/BoardIdValidatePcd.h
+  <Packages>
+    AmdPlatformPkg/AmdPlatformPkg.dec
+    MdePkg/MdePkg.dec
+  }
+
   #
   # IPMI Interface Type
   #
@@ -154,6 +163,12 @@
   gAmdPlatformPkgTokenSpaceGuid.PcdType11OemStrings|NULL|VOID*|0x00030002
   gAmdPlatformPkgTokenSpaceGuid.PcdType12SystemCfgOptionsCount|0|UINT8|0x00030003
   gAmdPlatformPkgTokenSpaceGuid.PcdType12SystemCfgOptions|NULL|VOID*|0x00030004
+
+  ## Platform board name string used by BoardIdValidatePei.
+  gAmdPlatformPkgTokenSpaceGuid.PcdPlatformBoardName|{""}|VOID*|0x00030005
+
+  ## BIOS version string used by BoardIdValidatePei.
+  gAmdPlatformPkgTokenSpaceGuid.PcdBiosVersionString|{""}|VOID*|0x00030006
 
 [PcdsFeatureFlag]
   ## ROM Armor PCDs

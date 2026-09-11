@@ -42,5 +42,6 @@
   AmdPlatformPkg/Universal/Psp/PspPreTcgEventLogPei/PspPreTcgEventLogPei.inf
   AmdPlatformPkg/Universal/RestoreDefaultPei/RestoreDefault.inf
   AmdPlatformPkg/Universal/BoardId/Pei/AmdBoardIdPei.inf
+  AmdPlatformPkg/Universal/BoardIdValidatePei/BoardIdValidatePei.inf
 
 [Components.X64]

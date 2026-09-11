@@ -1,0 +1,46 @@
+## @file
+#  Board ID validation PEIM.
+#
+#  Shared PEIM that verifies the BIOS ROM platform name matches the physical
+#  board detected via EEPROM Board ID.  Each platform supplies its own
+#  BoardId-to-board-name mapping through PcdPlatformBoardIdNameTable in its
+#  PlatformCommonPcd.inc.dsc.
+#
+#  Copyright (C) 2026, Advanced Micro Devices, Inc. All rights reserved.<BR>
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+
+[Defines]
+  INF_VERSION                    = 1.30
+  BASE_NAME                      = BoardIdValidatePei
+  FILE_GUID                      = 3814872D-A5A0-4B4E-9EA2-A933EAD39C15
+  MODULE_TYPE                    = PEIM
+  VERSION_STRING                 = 1.0
+  ENTRY_POINT                    = BoardIdValidateEntry
+
+[Sources]
+  BoardIdValidatePei.c
+
+[Packages]
+  AmdCpmPkg/AmdCpmPkg.dec
+  AmdPlatformPkg/AmdPlatformPkg.dec
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  DebugLib
+  PcdLib
+  PeimEntryPoint
+
+[Pcd]
+  gAmdPlatformPkgTokenSpaceGuid.PcdBiosVersionString
+  gAmdPlatformPkgTokenSpaceGuid.PcdPlatformBoardName
+  gAmdPlatformPkgTokenSpaceGuid.PcdPlatformBoardIdNameTable
+
+[Ppis]
+  gAmdBoardIdPpiGuid
+
+[Depex]
+  gAmdBoardIdPpiGuid

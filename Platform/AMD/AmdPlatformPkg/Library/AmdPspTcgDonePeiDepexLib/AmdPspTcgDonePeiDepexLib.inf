@@ -1,0 +1,24 @@
+## @file
+#  This is the module used to consume dependency on PspPreTcgEventLogPei.
+#  Copyright (C) 2026 Advanced Micro Devices, Inc. All rights reserved.
+#
+#  SPDX-License-Identifier: BSD-2-Clause-Patent
+#
+##
+[Defines]
+  INF_VERSION                    = 0x00010005
+  BASE_NAME                      = AmdPspTcgDonePeiDepexLib
+  FILE_GUID                      = 7B3E2F1A-94C6-4D8B-A531-2E7F8D4C9B0E
+  MODULE_TYPE                    = BASE
+  VERSION_STRING                 = 1.0
+  LIBRARY_CLASS                  = AmdPspTcgDonePeiDepexLib
+
+[Sources]
+  AmdPspTcgDonePeiDepexLib.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  AmdPlatformPkg/AmdPlatformPkg.dec
+
+[Depex]
+  gAmdPspPreTcgEventLogDonePpiGuid

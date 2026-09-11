@@ -138,6 +138,7 @@
 
 [Components]
   AmdPlatformPkg/Library/BaseAlwaysFalseDepexLib/BaseAlwaysFalseDepexLib.inf
+  AmdPlatformPkg/Library/AmdPspTcgDonePeiDepexLib/AmdPspTcgDonePeiDepexLib.inf
   AmdPlatformPkg/Library/CcxTscTimerLib/BaseTscTimerLib.inf
   AmdPlatformPkg/Library/AmdPostCodeLibNull/AmdPostCodeLibNull.inf
   AmdPlatformPkg/Library/EmulatorSerialPort80RedirectLib/EmulatorSerialPort80Redirect.inf

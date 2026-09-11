@@ -23,6 +23,7 @@
 
 [LibraryClasses.Common.PEIM, LibraryClasses.Common.PEI_CORE]
   TimerLib|AmdPlatformPkg/Library/CcxTscTimerLib/PeiTscTimerLib.inf
+  AmdPspTcgDonePeiDepexLib|AmdPlatformPkg/Library/AmdPspTcgDonePeiDepexLib/AmdPspTcgDonePeiDepexLib.inf
 
 [LibraryClasses.Common.PEIM]
 

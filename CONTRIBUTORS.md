@@ -23,6 +23,7 @@ out-of-sync with CODEOWNERS and/or REVIEWERS over time and need an occasional re
 | dahogn                 | dahogn@hotmail.com               | [@dahogn](https://github.com/dahogn)                   |
 | Daniel Schaefer        | git@danielschaefer.me            | [@JohnAZoidberg](https://github.com/JohnAZoidberg)     |
 | Deepika Kethi Reddy    | deepika.kethi.reddy@intel.com    | [@dkethire](https://github.com/dkethire)               |
+| Dhanush Ganesh         | dhanushg@qti.qualcomm.com        | [@dhanushg1197](https://github.com/dhanushg1197)       |
 | Duke Zhai              | duke.zhai@amd.com                | [@mingxzha](https://github.com/mingxzha)               |
 | Eric Xing              | eric.xing@amd.com                | [@exinghr](https://github.com/exinghr)                 |
 | Graeme Gregory         | graeme@xora.org.uk               |                                                        |
@@ -57,6 +58,7 @@ out-of-sync with CODEOWNERS and/or REVIEWERS over time and need an occasional re
 | Sami Mujawar           | sami.mujawar@arm.com             | [@samimujawar](https://github.com/samimujawar)         |
 | Sumit Garg             | sumit.garg@oss.qualcomm.com      | [@b49020](https://github.com/b49020)                   |
 | Sunil V L              | sunilvl@ventanamicro.com         | [@vlsunil](https://github.com/vlsunil)                 |
+| Tabish Sarwar          | tsarwar@qti.qualcomm.com         | [@tsarwar-dev](https://github.com/tsarwar-dev)         |
 | Theo Jehl              | theojehl76@gmail.com             | [@theomacx86](https://github.com/theomacx86)           |
 | Thomas Abraham         | thomas.abraham@arm.com           |                                                        |
 | USER0FISH              | libing1202@outlook.com           | [@USER0FISH](https://github.com/USER0FISH)             |
